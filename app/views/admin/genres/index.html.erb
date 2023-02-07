@@ -1,0 +1,41 @@
+<div class="container col-12">
+    <div class="row">
+      <div class="col">
+        <div class="mt-4">
+        <h4 class="text-center bg-light"><span style="background-color: gainsboro">ジャンル一覧・追加</span></h4>
+        </div>
+        </div>
+    </div>
+        
+
+<div class="row">
+    <div class="col">
+        <%= form_with model: @genre, url: admin_genres_path, method: :post do |f| %>
+          <%= f.label :"ジャンル名" %>
+          <%= f.text_field :genrename %>
+          <%= f.submit "新規登録", class:"btn btn-success" %>
+        <% end %>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-5 mt-3">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>ジャンル</th>
+              <th colspan="1"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @genres.each do |genre| %>
+            <tr>
+              <td><%= genre.genrename %></td>
+              <td><%= link_to "編集する", edit_admin_genre_path(genre), class:"btn btn-success" %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>
