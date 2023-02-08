@@ -1,0 +1,31 @@
+<div class="container col-12">
+  <h4 class="text-center bg-light"><span style="background-color: gainsboro">投稿編集</span></h4>
+  
+  <%= form_with class: "col-md-8", model: @post, url: post_path, method: :patch do |f| %>
+  
+
+      <div class="row mb-3">
+        <%= f.label "曲名", class: "col-md-3 col-form-label" %>
+        <%= f.text_field :title, class: "col-md-5 form-control post_title" %>
+      </div>
+      
+      <div class="row mb-3">
+        <%= f.label "アーティスト", class: "col-md-3 col-form-label" %>
+        <%= f.text_field :artist, class: "col-md-5 form-control post_artist" %>
+      </div>
+      
+      <div class="row mb-3">
+        <%= f.label "ジャンル", class: "col-md-3 form-select" %>
+        <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :genrename) %>
+      </div>
+
+      <div class="row mb-3">
+        <%= f.label "ひとこと", class: "col-md-3 col-form-label" %>
+        <%= f.text_area :content, class: "col-md-5 form-control post_content" %>
+      </div>
+
+<div class="row mb-3 justify-content-center">
+        <%= f.submit "変更を更新", class: "col-md-2 btn btn-outline-success btn-lg" %>
+</div>
+
+<% end %>
