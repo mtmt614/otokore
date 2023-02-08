@@ -1,0 +1,62 @@
+<div class='container col-12 px-5 px-sm-0'>
+  <div class="mt-4">
+  <h4 class="text-center bg-light"><span style="background-color: gainsboro">詳細</span></h4>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-3">
+          <%= "ユーザー" %>
+        </div>
+        <div class="h4 col-md-5">
+          <%= @post.user.name %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <%= "曲名" %>
+        </div>
+        <div class="h4 col-md-5" >
+          <%= @post.title %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <%= "アーティスト" %>
+        </div>
+        <div class="h4 col-md-5" >
+          <%= @post.artist %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <%= "ジャンル" %>
+        </div>
+        <div class="h4 col-md-5" >
+          <%= @post.genre.genrename %>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-3">
+          <%= "ひとこと" %>
+        </div>
+        <div class="h4 col-md-5" >
+          <%= @post.content %>
+        </div>
+      </div>
+
+        <div class="row mt-3">
+          <%= form_with class: "col-md-8", model: @post, url: edit_post_path, method: :get do |f| %>
+          <div class="row mb-3 justify-content-center">
+            <%= f.submit "編集する", class: "col-md-4 btn btn-outline-success btn-lg" %>
+          </div>
+        </div>
+        <% end %>
+    </div>
+  </div>
+</div>
