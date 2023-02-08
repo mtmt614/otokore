@@ -3,10 +3,11 @@ class CreatePosts < ActiveRecord::Migration[6.1]
     create_table :posts do |t|
       
       t.integer :user_id, null: false
+      t.integer :genre_id, null: false
       t.string :title, null: false
       t.string :artist, null: false
       t.text :content, null: false
-      t.integer :likes_count, null: false
+      t.integer :likes_count
 
       t.timestamps
     end

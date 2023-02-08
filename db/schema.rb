@@ -32,10 +32,11 @@ ActiveRecord::Schema.define(version: 2023_02_07_140317) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
+    t.integer "genre_id", null: false
     t.string "title", null: false
     t.string "artist", null: false
     t.text "content", null: false
-    t.integer "likes_count", null: false
+    t.integer "likes_count"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
