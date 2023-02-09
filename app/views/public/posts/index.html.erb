@@ -22,7 +22,7 @@
         <tbody>
           <% @posts.each do |post| %>
           <tr>
-            <td><%= post.user.name %></td>
+            <td><%= link_to post.user.name,user_path(current_user.id) %></td>
             <td><%= link_to post.title, post_path(post)  %></td>
             <td><%= post.artist %></td>
             <td><%= post.genre.genrename %></td>
