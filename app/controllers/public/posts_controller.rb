@@ -24,6 +24,10 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comment = Comment.new
   end
+  
+  def edit
+    @post = Post.find(params[:id])
+  end
 
   def update
     @post = Post.find(params[:id])
