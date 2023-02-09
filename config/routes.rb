@@ -10,7 +10,8 @@ root to: 'public/homes#top'
 get 'about' => 'public/homes#about'
 
 scope module: :public do
-    resources :posts,  only: [:index, :show, :new, :create, :edit, :update, :destroy] 
+    resources :posts, only: [:index, :show, :new, :create, :edit, :update, :destroy] 
+    resource :likes, only: [:create, :destroy]
 end
 
 
