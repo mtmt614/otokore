@@ -63,6 +63,23 @@
       <% end %>
     </p>
   <% end %>
+  
+  <div>
+  <p>コメント件数：<%= @post.comments.count %></p>
+  <% @post.comments.each do |comment| %>
+    <%= comment.user.name %>
+    <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.body %>
+    <% if comment.user == current_user %>
+      <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
+    <% end %>
+<div>
+  <% end %>
+</div>
+  <%= form_with model: [@post, @comment] do |f| %>
+    <%= f.text_area :body, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
+</div>
 
         <div class="row mt-3">
           <%= form_with class: "col-md-8", model: @post, url: edit_post_path, method: :get do |f| %>
