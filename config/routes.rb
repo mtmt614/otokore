@@ -10,6 +10,7 @@ root to: 'public/homes#top'
 get 'about' => 'public/homes#about'
 
 scope module: :public do
+    resources :users,     only: [:show, :edit, :update, :destroy]
     resources :posts, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     resource :likes, only: [:create, :destroy]
     resources :comments,  only: [:create, :destroy]
@@ -19,7 +20,7 @@ end
 
 # 管理者用
 devise_for :admin, skip: [:registrations, :passwords], controllers: {
-  sessions: "admin/sessions"
+sessions: "admin/sessions"
 }
 
 namespace :admin do
