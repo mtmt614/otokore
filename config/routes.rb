@@ -10,7 +10,7 @@ root to: 'public/homes#top'
 get 'about' => 'public/homes#about'
 
 scope module: :public do
-    resources :users,     only: [:show, :edit, :update, :destroy]
+    resources :users, only: [:show, :edit, :update, :destroy]
     resources :posts, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     resource :likes, only: [:create, :destroy]
     resources :comments,  only: [:create, :destroy]
@@ -24,6 +24,7 @@ sessions: "admin/sessions"
 }
 
 namespace :admin do
+  resources :users, only: [:index, :show, :edit, :update]
   resources :genres, only: [:index, :edit, :create, :update]
   resources :posts, only: [:index, :create, :new, :show, :edit, :update]
 end
