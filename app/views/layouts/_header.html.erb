@@ -1,7 +1,7 @@
 <header class="shadow-sm">
   <nav class="navbar navbar-expand-lg navbar-light">
       <% if admin_signed_in? %>
-        <%= link_to "Otokore", admin_login_path, class:"header-title navbar-brand"%>
+        <%= link_to "Otokore", root_path, class:"header-title navbar-brand"%>
       <% else %>
         <%= link_to "Otokore", root_path, class:"header-title navbar-brand"%>
       <% end %>
@@ -27,20 +27,20 @@
           </li>
          <% elsif admin_signed_in? %>
            <li class="nav-item">
-             <%= link_to "投稿一覧", class: 'btn btn-outline-secondary mx-3 my-1' %>
+             <%= link_to "投稿一覧", admin_posts_path, class: 'btn btn-outline-secondary mx-3 my-1' %>
            </li>
            <li class="nav-item">
-             <%= link_to "会員一覧", class:'btn btn-outline-secondary mx-3 my-1'%>
+             <%= link_to "会員一覧", admin_users_path,  class:'btn btn-outline-secondary mx-3 my-1'%>
            </li>
            <li class="nav-item">
-             <%= link_to "ジャンル一覧", class: 'btn btn-outline-secondary mx-3 my-1'%>
+             <%= link_to "ジャンル一覧", admin_genres_path, class: 'btn btn-outline-secondary mx-3 my-1'%>
            </li>
            <li class="nav-item">
              <%= link_to "ログアウト",destroy_admin_session_path, method: :delete,class: 'btn btn-outline-secondary mx-3 my-1'%>
            </li>
          <% else %>
          <li class="nav-item">
-             <%= link_to "about", about_path,class: 'btn btn-outline-secondary mx-3 my-1' %>
+             <%= link_to "About", about_path,class: 'btn btn-outline-secondary mx-3 my-1' %>
            </li>
            <li class="nav-item">
              <%= link_to "投稿一覧", posts_path, class: 'btn btn-outline-secondary mx-3 my-1' %>
