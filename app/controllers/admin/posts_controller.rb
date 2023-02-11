@@ -1,4 +1,5 @@
 class Admin::PostsController < ApplicationController
+
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
@@ -20,10 +21,14 @@ class Admin::PostsController < ApplicationController
     @comment = Comment.new
   end
 
+  def edit
+    @post = Post.find(params[:id])
+  end
+
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to post_path(@post)
+      redirect_to admin_post_path
     else
       render :edit
     end
