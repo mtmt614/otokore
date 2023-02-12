@@ -1,7 +1,7 @@
 class Public::UsersController < ApplicationController
 
   def show
-    @user = current_user
+    @user = User.find(params[:id])
     @posts = @user.posts.page(params[:page])
   end
 

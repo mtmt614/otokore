@@ -1,3 +1,5 @@
+<% if user_signed_in? && current_user.id.to_s == params[:id] %>
+
 <h2>my page</h2>
     <div>
       <%= image_tag @user.get_profile_image(100,100) %>
@@ -23,3 +25,30 @@
         </tbody>
       </table>
       <%= paginate @posts %>
+      
+      <% else %>
+      
+      <h2>User Info</h2>
+    <div>
+      <%= image_tag @user.get_profile_image(100,100) %>
+      <h5><%= @user.name %></h5>
+    </div>
+
+          <table class="table">
+            <th>曲名</th>
+            <th>アーティスト</th>
+            <th>ジャンル</th>
+          </tr>
+        <tbody>
+          <% @posts.each do |post| %>
+          <tr>
+            <td><%= link_to post.title, post_path(post)  %></td>
+            <td><%= post.artist %></td>
+            <td><%= post.genre.genrename %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= paginate @posts %>
+
+      <% end %>

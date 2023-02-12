@@ -10,17 +10,15 @@ root to: 'public/homes#top'
 get 'about' => 'public/homes#about'
 
 scope module: :public do
+    get 'users/my_page/edit' => 'users#edit'
     get 'users/unsubscribe' => 'users#unsubscribe'
     patch 'users/withdraw' => 'users#withdraw'
-    resources :users, only: [:update, :destroy]
+    resources :users, only: [:show, :update, :destroy]
     resources :posts, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     resource :likes, only: [:create, :destroy]
     resources :comments,  only: [:create, :destroy]
   end
 end
-get 'users/my_page/edit' => 'public/users#edit'
-get 'users/my_page' => 'public/users#show'
-
 
 
 # 管理者用
