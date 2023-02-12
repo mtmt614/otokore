@@ -13,7 +13,11 @@ scope module: :public do
     get 'users/my_page/edit' => 'users#edit'
     get 'users/unsubscribe' => 'users#unsubscribe'
     patch 'users/withdraw' => 'users#withdraw'
-    resources :users, only: [:show, :update, :destroy]
+    resources :users, only: [:show, :update, :destroy] do
+      member do
+        get :likes
+      end
+    end
     resources :posts, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     resource :likes, only: [:create, :destroy]
     resources :comments,  only: [:create, :destroy]

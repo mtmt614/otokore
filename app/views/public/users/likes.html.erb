@@ -1,0 +1,20 @@
+
+<h2>like</h2>
+    <table class="table">
+        <th></th>
+        <th>ユーザー</th>
+        <th>曲名</th>
+        <th>アーティスト</th>
+        <th>ジャンル</th>
+        <tbody>
+          <% @like_posts.each do |post| %>
+          <tr>
+            <td><%= image_tag post.user.get_profile_image(100,100) %></td>
+            <td><%= link_to post.user.name, user_path(post.user) %></td>
+            <td><%= link_to post.title, post_path(post)  %></td>
+            <td><%= post.artist %></td>
+            <td><%= post.genre.genrename %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>

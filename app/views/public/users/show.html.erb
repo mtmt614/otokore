@@ -8,13 +8,14 @@
       <p><%= link_to "プロフィール編集", users_my_page_edit_path %></p>
       <% end %>
     </div>
+    
+    <%= link_to "いいねした投稿", likes_user_path(@user) %>
 
           <table class="table">
             <th>曲名</th>
             <th>アーティスト</th>
             <th>ジャンル</th>
-          </tr>
-        <tbody>
+            
           <% @posts.each do |post| %>
           <tr>
             <td><%= link_to post.title, post_path(post)  %></td>
@@ -38,8 +39,7 @@
             <th>曲名</th>
             <th>アーティスト</th>
             <th>ジャンル</th>
-          </tr>
-        <tbody>
+            
           <% @posts.each do |post| %>
           <tr>
             <td><%= link_to post.title, post_path(post)  %></td>
