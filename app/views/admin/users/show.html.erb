@@ -3,12 +3,19 @@
 <div class="container col-12">
   <div class="mt-4">
   <h4 class="text-center bg-light"><span style="background-color: gainsboro"><%= @user.name %>さんの会員詳細</sapn></h1>
+      <div class="row">
+        <div class="col-lg-5 mt-4 text-center"><%= link_to "編集する", edit_admin_user_path, class: "btn btn-outline-success", style: 'width:170px' %></div>
+      </div>
   </div>
   
   <div class="row mt-4">
     <div class="col-10 align-center offset-1">
       <table class='table table-borderless'>
         <tbody>
+          <tr>
+            <td>プロフィール画像</td>
+            <td><%= image_tag @user.get_profile_image(100,100) %></td>
+          </tr>
           <tr>
             <td>ユーザーネーム</td>
             <td><%= @user.name %></td>
@@ -30,9 +37,21 @@
           <tr>
         </tbody>
       </table>
-      <div class="row">
-        <div class="col-lg-5 mt-4 text-center"><%= link_to "編集する", edit_admin_user_path, class: "btn btn-outline-success", style: 'width:170px' %></div>
-      </div>
     </div>
   </div>
 </div>
+
+    <table class="table">
+        <th>曲名</th>
+        <th>アーティスト</th>
+        <th>ジャンル</th>
+            
+      <% @posts.each do |post| %>
+        <tr>
+          <td><%= link_to post.title, post_path(post)  %></td>
+          <td><%= post.artist %></td>
+          <td><%= post.genre.genrename %></td>
+        </tr>
+      <% end %>
+    </table>
+      <%= paginate @posts %>
