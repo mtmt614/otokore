@@ -1,34 +1,35 @@
 class Public::UsersController < ApplicationController
-  
-  before_action :is_matching_login_user, only: [:edit, :update]
-  
+
   def show
-    @user = User.find(params[:id])
+    @user = current_user
     @posts = @user.posts.page(params[:page])
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = current_user
   end
-  
+
   def update
-    @user = User.find(params[:id])
+    @user = current_user
     @user.update(user_params)
-    redirect_to user_path(@user.id)
+    redirect_to users_my_page_path(@user.id)
   end
-  
+
+  def unsubscribe
+    @user = current_user
+  end
+
+  def withdraw
+    @user = current_user
+    @user.update(is_deleted: true)
+    reset_session
+    redirect_to root_path
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:name, :profile_image)
+    params.require(:user).permit(:name, :email, :encrypted_password, :profile_image, :is_deleted)
   end
-  
-  def is_matching_login_user
-    user_id = params[:id].to_i
-    login_user_id = current_user.id
-    if(user_id != login_user_id)
-      redirect_to post_path
-    end
-  end
-  
+
 end

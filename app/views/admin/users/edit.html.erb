@@ -1,10 +1,8 @@
-
-
 <div class="container col-12">
   <div class="mt-4">
   <h4 class="text-center bg-light"><span style="background-color: gainsboro"><%= @user.name %>さんの会員情報編集</span></h1>
   </div>
-  <%= form_with model: @user, url: user_path(@user.id), method: :patch do |f| %>
+  <%= form_with model: @user, url: admin_user_path, method: :patch do |f| %>
     <div class="form-group">
       <div class="row mt-4 offset-md-1">
         <div class="col-lg-2">会員ID</div>
@@ -23,10 +21,22 @@
         <div class="col-lg-3"><%= f.text_field :email, class: "form-control border-dark" %></div>
       </div>
     </div>
-
-    <div class="row">
-      <div class="col-lg-3 mt-4 offset-lg-3 text-center"><%= f.submit "編集内容を保存", style: 'width:150px', class: "btn btn-outline-success" %></div>
-      <div class="col-lg-3 mt-4 text-center"><%= link_to "退会する", users_unsubscribe_path, style: 'width:150px', class: "btn btn-outline-danger" %></div>
+    <div class="form-group">
+      <div class="row offset-md-1">
+        <div class="col-lg-2"><%= f.label :user_status,"会員ステータス" %></div>
+        <div class="col-lg-3">
+          <%= f.radio_button :user_status, :false, checked: true %>
+          <%= f.label :user_status, "有効", value: false %>
+          　<%= f.radio_button :user_status, :true %>
+          <%= f.label :user_status, "退会", value: true %>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row offset-md-1">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-3 text-center"><%= f.submit "変更を保存", style: 'width:150px', class: "btn btn-outline-success" %></div>
+      </div>
     </div>
   <% end %>
 </div>

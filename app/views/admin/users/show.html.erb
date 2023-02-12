@@ -1,4 +1,38 @@
-<div>
-  <h3><%= @user.name %></h3>
-  <%= image_tag @user.get_profile_image(100,100) %>
+
+
+<div class="container col-12">
+  <div class="mt-4">
+  <h4 class="text-center bg-light"><span style="background-color: gainsboro"><%= @user.name %>さんの会員詳細</sapn></h1>
+  </div>
+  
+  <div class="row mt-4">
+    <div class="col-10 align-center offset-1">
+      <table class='table table-borderless'>
+        <tbody>
+          <tr>
+            <td>ユーザーネーム</td>
+            <td><%= @user.name %></td>
+          </tr>
+          <tr>
+            <td>メールアドレス</td>
+            <td><%= @user.email %></td>
+          </tr>
+          <tr>
+            <td>会員ステータス</td>
+            <td>
+              <% if @user.is_deleted == false %>
+                <b class="text-success">有効</b>
+              <% else %>
+                <b class="text-black-50">退会</b>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="col-lg-5 mt-4 text-center"><%= link_to "編集する", edit_admin_user_path, class: "btn btn-outline-success", style: 'width:170px' %></div>
+      </div>
+    </div>
+  </div>
 </div>

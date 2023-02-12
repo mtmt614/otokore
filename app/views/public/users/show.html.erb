@@ -3,7 +3,7 @@
       <%= image_tag @user.get_profile_image(100,100) %>
       <h5><%= @user.name %></h5>
       <% if @user == current_user %>
-      <p><%= link_to "プロフィール編集", edit_user_path %></p>
+      <p><%= link_to "プロフィール編集", users_my_page_edit_path %></p>
       <% end %>
     </div>
 
