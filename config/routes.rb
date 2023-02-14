@@ -33,7 +33,9 @@ sessions: "admin/sessions"
 namespace :admin do
   resources :users, only: [:index, :show, :edit, :update]
   resources :genres, only: [:index, :edit, :create, :update]
-  resources :posts, only: [:index, :create, :new, :show, :edit, :update]
+  resources :posts, only: [:index, :create, :new, :show, :edit, :update, :destroy] do
+    resources :comments,  only: [:destroy]
+  end
 end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

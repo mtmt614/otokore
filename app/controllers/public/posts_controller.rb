@@ -37,6 +37,14 @@ class Public::PostsController < ApplicationController
       render :edit
     end
   end
+  
+  def destroy
+    if @post = Post.find(params[:id]).destroy
+      redirect_to posts_path
+    else
+      redirect_to "/"
+    end
+  end
 
   private
   

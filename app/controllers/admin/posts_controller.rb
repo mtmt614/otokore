@@ -33,6 +33,14 @@ class Admin::PostsController < ApplicationController
       render :edit
     end
   end
+  
+  def destroy
+    if @post = Post.find(params[:id]).destroy
+      redirect_to admin_posts_path
+    else
+      redirect_to "/"
+    end
+  end
 
   private
    def post_params
