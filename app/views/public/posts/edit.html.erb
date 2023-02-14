@@ -23,8 +23,13 @@
         <%= f.text_area :content, class: "col-md-5 form-control post_content" %>
       </div>
 
-<div class="row mb-3 justify-content-center">
+      <div class="row mb-3 justify-content-center">
         <%= f.submit "変更", class: "col-md-2 btn btn-outline-success btn-lg" %>
-</div>
+      </div>
 
-<% end %>
+      <div class="row mb-3 justify-content-center">
+        <%= link_to "削除する", post_path(params[:id]), class:" col-md-2 btn btn-outline-success btn-lg", method: :delete, data: { confirm: '本当に削除しますか？' } %>
+      </div>
+
+
+  <% end %>
