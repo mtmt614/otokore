@@ -1,3 +1,4 @@
+
 <% if user_signed_in? && current_user.id.to_s == params[:id] %>
 
 <h2>my page</h2>
@@ -5,12 +6,15 @@
       <%= image_tag @user.get_profile_image(100,100) %>
       <h5><%= @user.name %></h5>
       <% if @user == current_user %>
+      <% if current_user.email != 'guest@email.com'%>
       <p><%= link_to "プロフィール編集", users_my_page_edit_path %></p>
       <% end %>
+      <% end %>
     </div>
-    
+  <% if current_user.email != 'guest@email.com'%>
     <%= link_to "いいねした投稿", likes_user_path(@user) %>
-
+  <% end %>
+    
           <table class="table">
             <th>曲名</th>
             <th>アーティスト</th>

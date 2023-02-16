@@ -19,9 +19,11 @@
           <li class="nav-item ">
             <%= link_to "投稿一覧", posts_path, class: 'btn btn-outline-secondary mx-3 my-1'%>
           </li>
+            <% if current_user.email != 'guest@email.com'%>
           <li class="nav-item">
             <%= link_to "投稿する", new_post_path, class: 'btn btn-outline-secondary mx-3 my-1'%>
           </li>
+            <% end %>
           <li class="nav-item">
             <%= link_to "ログアウト", destroy_user_session_path, method: :delete,class: 'btn btn-outline-secondary mx-3 my-1'%>
           </li>
@@ -39,17 +41,17 @@
              <%= link_to "ログアウト",destroy_admin_session_path, method: :delete,class: 'btn btn-outline-secondary mx-3 my-1'%>
            </li>
          <% else %>
-         <li class="nav-item">
-             <%= link_to "About", about_path,class: 'btn btn-outline-secondary mx-3 my-1' %>
-           </li>
            <li class="nav-item">
-             <%= link_to "投稿一覧", posts_path, class: 'btn btn-outline-secondary mx-3 my-1' %>
+             <%= link_to "About", about_path,class: 'btn btn-outline-secondary mx-3 my-1' %>
            </li>
            <li class="nav-item">
              <%= link_to "新規登録", new_user_registration_path,class: 'btn btn-outline-secondary mx-3 my-1'%>
            </li>
            <li class="nav-item">
              <%= link_to "ログイン", new_user_session_path,class: 'btn btn-outline-secondary mx-3 my-1'%>
+           </li>
+           <li class="nav-item">
+             <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: 'btn btn-outline-secondary mx-3 my-1' %>
            </li>
           <% end %>
         </ul>

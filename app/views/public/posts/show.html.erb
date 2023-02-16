@@ -41,8 +41,8 @@
           <%= @post.content %>
         </div>
       </div>
-      
-      
+
+  <% if current_user.email != 'guest@email.com'%>   
   <% if @post.liked_by?(current_user) %>
     <p>
       <%= link_to post_likes_path(@post), method: :delete do %>
@@ -56,8 +56,9 @@
       <% end %>
     </p>
   <% end %>
+  <% end %>
   
-  
+  <% if current_user.email != 'guest@email.com'%>
   <div>
   <p>コメント件数：<%= @post.comments.count %></p>
   <% @post.comments.each do |comment| %>
@@ -74,13 +75,16 @@
     <%= f.submit "送信する" %>
   <% end %>
 </div>
+<% end %>
 
+        <% if @user == current_user %>
         <div class="row mt-3">
           <%= form_with class: "col-md-8", model: @post, url: edit_post_path, method: :get do |f| %>
           <div class="row mb-3 justify-content-center">
             <%= f.submit "編集", class: "col-md-4 btn btn-outline-success btn-lg" %>
           </div>
         </div>
+        <% end %>
         <% end %>
     </div>
   </div>

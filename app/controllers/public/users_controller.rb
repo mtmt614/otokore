@@ -1,6 +1,7 @@
 class Public::UsersController < ApplicationController
   
   before_action :set_user, only: [:likes]
+  before_action :ensure_guest_user, only: [:edit, :withdraw]
 
   def show
     @user = User.find(params[:id])
@@ -36,7 +37,7 @@ class Public::UsersController < ApplicationController
 
 
   private
-
+  
   def user_params
     params.require(:user).permit(:name, :email, :encrypted_password, :profile_image, :is_deleted)
   end
@@ -44,5 +45,14 @@ class Public::UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
   end
+  
+  def ensure_guest_user
+    
+    @user = current_user
+    if @user.email == "guest@email.com"
+      #binding.pry
+      redirect_to user_path(current_user) , notice: 'ゲストユーザーはこの操作を行うことができません。'
+    end
+  end  
   
 end

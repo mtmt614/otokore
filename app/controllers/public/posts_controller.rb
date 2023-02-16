@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+  before_action :ensure_guest_user, only: [:create]
 
   def new
     @post = Post.new
@@ -50,6 +51,12 @@ class Public::PostsController < ApplicationController
   
    def post_params
      params.require(:post).permit(:title, :artist, :content, :genre_id)
+   end
+   
+   def ensure_guest_user
+    if current_user.email == "guest@email.com"
+      redirect_to user_path(current_user) , notice: 'ゲストユーザーはこの操作を行うことができません。'
+    end
    end
 
 end
