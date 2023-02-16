@@ -41,4 +41,11 @@ class Public::SessionsController < Devise::SessionsController
     end
   end
   
+  # ゲストログイン
+  def guest_sign_in
+    user = User.guest
+    sign_in user
+    redirect_to root_path
+  end
+  
 end
