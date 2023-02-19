@@ -41,6 +41,7 @@ namespace :admin do
   resources :posts, only: [:index, :create, :new, :show, :edit, :update, :destroy] do
     resources :comments,  only: [:destroy]
   end
+  get '/search' => 'searches#search'
 end
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
