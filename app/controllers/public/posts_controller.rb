@@ -19,6 +19,10 @@ class Public::PostsController < ApplicationController
     @genres = Genre.all
     @all_posts = Post.all
     @posts = Post.page(params[:page]).per(10)
+    if params[:genre_id].present?
+      @genre = Genre.find(params[:genre_id])
+      @posts = @genre.posts
+    end
   end
 
   def show

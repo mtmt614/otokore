@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   
   belongs_to :user
-  belongs_to :genre
+  belongs_to :genre, optional: true
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
   
