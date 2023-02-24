@@ -77,7 +77,8 @@
 </div>
 <% end %>
 
-        <% if @user == current_user %>
+        <%# if @user == current_user %>
+        <% if user_signed_in? && current_user.id.to_s == params[:id] %>
         <div class="row mt-3">
           <%= form_with class: "col-md-8", model: @post, url: edit_post_path, method: :get do |f| %>
           <div class="row mb-3 justify-content-center">
