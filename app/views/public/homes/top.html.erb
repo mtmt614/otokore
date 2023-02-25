@@ -12,12 +12,15 @@
 <% if user_signed_in? %>
 
 <div class="container new-item">
-  <h2>新着商品</h2>
+  <h5>新着投稿</h5>
   <div class="row">
     <table class="table table-borderless">
     <tr class="d-flex d-block flex-wrap justify-content-center ">
       <% @posts.each do |post| %>
        <td class="new_item_table">
+          <%= link_to user_path(post.user) do %>
+            <p><%= image_tag post.user.get_profile_image(100,100) %></p>
+          <% end %>
           <%= link_to post_path(post) do %>
             <p class="figure-caption"><%= post.title %></p>
           <% end %>
