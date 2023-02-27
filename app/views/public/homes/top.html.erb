@@ -32,7 +32,13 @@
 </div>
 
   <div class="col text-right">
-  <%= link_to "全ての投稿を見る>", posts_path %>
-</div>
+   <%= link_to "全ての投稿を見る>", posts_path %>
+  </div>
 
-<% end %>
+  <% else %>
+    <div>
+      <%= link_to "新規登録", new_user_registration_path,  class: "btn btn-success" %>
+      <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary" %>
+      <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post,  class: 'btn btn-warning' %>
+    </div>
+  <% end %>
