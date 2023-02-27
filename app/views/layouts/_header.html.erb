@@ -27,6 +27,8 @@
           <li class="nav-item">
             <%= link_to "ログアウト", destroy_user_session_path, method: :delete,class: 'btn btn-outline-secondary mx-3 my-1'%>
           </li>
+            <%= render partial: 'layouts/searchform' %>
+            
          <% elsif admin_signed_in? %>
            <li class="nav-item">
              <%= link_to "投稿一覧", admin_posts_path, class: 'btn btn-outline-secondary mx-3 my-1' %>
@@ -40,22 +42,23 @@
            <li class="nav-item">
              <%= link_to "ログアウト",destroy_admin_session_path, method: :delete,class: 'btn btn-outline-secondary mx-3 my-1'%>
            </li>
-         <% else %>
-           <li class="nav-item">
-             <%= link_to "About", about_path,class: 'btn btn-outline-secondary mx-3 my-1' %>
-           </li>
-           <li class="nav-item">
-             <%= link_to "新規登録", new_user_registration_path,class: 'btn btn-outline-secondary mx-3 my-1'%>
-           </li>
-           <li class="nav-item">
-             <%= link_to "ログイン", new_user_session_path,class: 'btn btn-outline-secondary mx-3 my-1'%>
-           </li>
-           <li class="nav-item">
-             <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: 'btn btn-outline-secondary mx-3 my-1' %>
-           </li>
+           <%= render partial: 'layouts/searchform' %>
+         <!--<%# else %>-->
+         <!--  <li class="nav-item">-->
+         <!--    <%#= link_to "About", about_path,class: 'btn btn-outline-secondary mx-3 my-1' %>-->
+         <!--  </li>-->
+         <!--  <li class="nav-item">-->
+         <!--    <%#= link_to "新規登録", new_user_registration_path,class: 'btn btn-outline-secondary mx-3 my-1'%>-->
+         <!--  </li>-->
+         <!--  <li class="nav-item">-->
+         <!--    <%#= link_to "ログイン", new_user_session_path,class: 'btn btn-outline-secondary mx-3 my-1'%>-->
+         <!--  </li>-->
+         <!--  <li class="nav-item">-->
+         <!--    <%#= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: 'btn btn-outline-secondary mx-3 my-1' %>-->
+         <!--  </li>-->
           <% end %>
         </ul>
       </div>
-      <%= render partial: 'layouts/searchform' %>
+      <%#= render partial: 'layouts/searchform' %>
  </nav>
 </header>
