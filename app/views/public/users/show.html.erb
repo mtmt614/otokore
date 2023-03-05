@@ -1,51 +1,77 @@
 
 <% if user_signed_in? && current_user.id.to_s == params[:id] %>
+<div class="container my-5">
+<h2 class="text-center bg-light">My Page</h2>
+      <div class="container my-5">
+        <div class="text-center bg-light">
+          <%= image_tag @user.get_profile_image(100,100) %>
+            <h5><%= @user.name %></h5>
+        </div>
+      </div>
 
-<h2>my page</h2>
-    <div>
-      <%= image_tag @user.get_profile_image(100,100) %>
-      <h5><%= @user.name %></h5>
       <% if @user == current_user %>
       <% if current_user.email != 'guest@email.com'%>
-      <p><%= link_to "プロフィール編集", users_my_page_edit_path %></p>
+        <div class="row">
+        <div class="col-lg-3 mt-4 offset-lg-3 text-center"><%= link_to "プロフィール編集", users_my_page_edit_path, style: 'width:160px', class: "btn btn-outline-success" %></div>
       <% end %>
       <% end %>
-    </div>
-  <% if current_user.email != 'guest@email.com'%>
-    <%= link_to "いいねした投稿", likes_user_path(@user) %>
-  <% end %>
-    
-          <table class="table">
+        <% if current_user.email != 'guest@email.com'%>
+        <div class="col-lg-3 mt-4 text-center"><%= link_to "いいねした投稿", likes_user_path(@user), style: 'width:150px', class: "btn btn-outline-danger" %></div>
+      </div>
+       <% end %>
+
+  <div class="col-md-8 offset-md-1">
+    <div class="container my-5">
+      <h2>My Music</h2>
+        <table class="table">
+          <tr>
+            <th>投稿日</th>
             <th>曲名</th>
             <th>アーティスト</th>
-            <th>ジャンル</th>
-            
+            <th>いいね</th>
+            <th>コメント</th>
+          <tr>
+
           <% @posts.each do |post| %>
           <tr>
+            <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
             <td><%= link_to post.title, post_path(post)  %></td>
             <td><%= post.artist %></td>
-            <td><%= post.genre.genrename %></td>
+            <td><%= post.likes.count %></td>
+            <td><%= post.comments.count %></td>
           </tr>
           <% end %>
         </tbody>
       </table>
       <%= paginate @posts %>
-      
+      </div>
+
+
       <% else %>
-      
-      <h2>User Info</h2>
-    <div>
-      <%= image_tag @user.get_profile_image(100,100) %>
-      <h5><%= @user.name %></h5>
-    </div>
 
-          <table class="table">
+      <div class="container my-5">
+      <h2 class="text-center bg-light">User Info</h2>
+      <div class="container my-5">
+        <div class="text-center bg-light">
+          <%= image_tag @user.get_profile_image(100,100) %>
+            <h5><%= @user.name %></h5>
+        </div>
+      </div>
+
+          <div class="col-md-8 offset-md-1">
+    <div class="container my-5">
+      <h2>My Music</h2>
+        <table class="table">
+          <tr>
+            <th>投稿日</th>
             <th>曲名</th>
             <th>アーティスト</th>
             <th>ジャンル</th>
-            
+          <tr>
+
           <% @posts.each do |post| %>
           <tr>
+            <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
             <td><%= link_to post.title, post_path(post)  %></td>
             <td><%= post.artist %></td>
             <td><%= post.genre.genrename %></td>
@@ -54,5 +80,11 @@
         </tbody>
       </table>
       <%= paginate @posts %>
-
+      </div>
       <% end %>
+    </div>
+  </div>
+</div>
+
+
+

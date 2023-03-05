@@ -1,7 +1,7 @@
-<div class='container col-12 px-5 px-sm-0'>
+<div class='col-md-8 offset-md-1'>
   <div class="mt-4">
-  <h4 class="text-center bg-light"><span style="background-color: gainsboro">詳細</span></h4>
-  </div>
+  <h3 class="text-center bg-light"><span style="background-color: gainsboro">詳細</span></h3>
+</div>
 
   <div class="row mt-5">
     <div class="col-md-6">
@@ -40,6 +40,9 @@
         <div class="h4 col-md-5" >
           <%= @post.content %>
         </div>
+        <div class="h4 col-md-5" >
+          <%= @post.created_at.strftime('%Y/%m/%d') %>
+        </div>
       </div>
 
   <% if current_user.email != 'guest@email.com'%>   
@@ -67,26 +70,24 @@
     <% if comment.user == current_user %>
       <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
     <% end %>
-  <div>
-    <% end %>
   </div>
-  <%= form_with model: [@post, @comment] do |f| %>
+    <% end %>
+      <%= form_with model: [@post, @comment] do |f| %>
     <%= f.text_area :body, rows: '5', placeholder: "コメントをここに" %>
     <%= f.submit "送信する" %>
   <% end %>
 </div>
 <% end %>
 
-        <%# if @user == current_user %>
-        <% if user_signed_in? && current_user.id.to_s == params[:id] %>
+      <%# if user_signed_in? && current_user.id.to_s == params[:id] %>
         <div class="row mt-3">
           <%= form_with class: "col-md-8", model: @post, url: edit_post_path, method: :get do |f| %>
           <div class="row mb-3 justify-content-center">
             <%= f.submit "編集", class: "col-md-4 btn btn-outline-success btn-lg" %>
           </div>
         </div>
-        <% end %>
-        <% end %>
+          <% end %>
+      <%# end %>
     </div>
   </div>
 </div>
