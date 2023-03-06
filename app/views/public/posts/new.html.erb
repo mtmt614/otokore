@@ -6,6 +6,11 @@
         <div class="text-center">
   <div class="row g-3 d-flex justify-content-center">
     <%= form_with model: @post do |f| %>
+    
+      <div class="row mb-3">
+          <%= f.label :image,"写真", class: "col-md-3 col-form-label" %>
+          <div class="col-lg-3"><%= f.file_field :image, placeholder: "写真", accept: "image/*" %></div>
+      </div>
 
       <div class="row mb-3">
         <%= f.label "曲名", class: "col-md-3 col-form-label" %>

@@ -1,7 +1,3 @@
-<div class="container my-5">
-  <h3 class="text-center"><span style="background-color: gainsboro">詳細</span></h3>
-</div>
-
 <% if @post.user == current_user %>
     <div class="col-2 ml-auto">
         <%= link_to "編集する", edit_post_path, class:"btn btn-primary py-1" %>
@@ -11,44 +7,33 @@
 <div class="container my-5">
     <div class="text-center">
 
+      <div class="h4 col-md-5" >
+          <%= image_tag @post.get_image %>
+      </div>
+      
       <div class="row">
-        <div class="col-md-3">
-          <%= "曲名" %>
-        </div>
         <div class="h4 col-md-5" >
           <%= @post.title %>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-md-3">
-          <%= "アーティスト" %>
-        </div>
         <div class="h4 col-md-5" >
           <%= @post.artist %>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-md-3">
-          <%= "ジャンル" %>
-        </div>
         <div class="h4 col-md-5" >
           <%= @post.genre.genrename %>
         </div>
       </div>
       
       <div class="row">
-        <div class="col-md-3">
-          <%= "ひとこと" %>
-        </div>
         <div class="h4 col-md-5" >
           <%= @post.content %>
         </div>
       <div class="row">
-        <div class="col-md-3">
-          <%= "投稿日" %>
-        </div>
         <div class="h4 col-md-5" >
           <%= @post.created_at.strftime('%Y/%m/%d') %>
         </div>
