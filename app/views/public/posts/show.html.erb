@@ -4,7 +4,7 @@
 
 <% if @post.user == current_user %>
     <div class="col-2 ml-auto">
-        <%= link_to "編集する", edit_post_path, class:"btn btn-primary py-0" %>
+        <%= link_to "編集する", edit_post_path, class:"btn btn-primary py-1" %>
       </div>
   <% end %>
 
@@ -69,6 +69,8 @@
     </p>
   <% end %>
   <% end %>
+  </div>
+  </div>
   
   <% if current_user.email != 'guest@email.com'%>
   <div class="row mb-3 ">
@@ -81,7 +83,7 @@
     <td>(<%= comment.created_at.strftime('%Y/%m/%d') %>)</td>
     <td>
       <% if comment.user == current_user %>
-        <%= link_to "削除", post_comment_path(post_id: comment.post_id, id: comment.id), method: :delete, remote: true, class:"btn btn-danger", data: { confirm: '削除しますか？' } %>
+        <%= link_to "削除", post_comment_path(post_id: comment.post_id, id: comment.id), method: :delete, remote: true, class:"btn btn-danger py-1", data: { confirm: '削除しますか？' } %>
       <% end %>
     </td>
   </tr>
@@ -94,7 +96,7 @@
       <div class="col-md-9 px-0 mx-auto">
 <%= form_with(model:[@post, @comment], local: false, class:"form-inline") do |f| %>
   <%= f.text_area :body, class:"col-md-3 form-control", size:"20x1", placeholder: "コメントをここに" %>
-  <%= f.submit "投稿", class:"col-md-1 btn btn-outline-success" %>
+  <%= f.submit "投稿", class:"btn btn-primary py-1" %>
 <% end %>
 </div>
     </div>
