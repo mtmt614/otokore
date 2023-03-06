@@ -1,9 +1,9 @@
 
 <% if user_signed_in? && current_user.id.to_s == params[:id] %>
 <div class="container my-5">
-<h2 class="text-center bg-light">My Page</h2>
+<h3 class="text-center"><span style="background-color: gainsboro">My Page</span></h3>
       <div class="container my-5">
-        <div class="text-center bg-light">
+        <div class="text-center">
           <%= image_tag @user.get_profile_image(100,100) %>
             <h5><%= @user.name %></h5>
         </div>
@@ -20,7 +20,7 @@
       </div>
        <% end %>
 
-  <div class="col-md-8 offset-md-1">
+  <div class="col-md-8 offset-md-2">
     <div class="container my-5">
       <h2>My Music</h2>
         <table class="table">
@@ -50,15 +50,15 @@
       <% else %>
 
       <div class="container my-5">
-      <h2 class="text-center bg-light">User Info</h2>
+      <h3 class="text-center"><span style="background-color: gainsboro">User Info</span></h3>
       <div class="container my-5">
-        <div class="text-center bg-light">
+        <div class="text-center">
           <%= image_tag @user.get_profile_image(100,100) %>
             <h5><%= @user.name %></h5>
         </div>
       </div>
 
-          <div class="col-md-8 offset-md-1">
+          <div class="col-md-8 offset-md-2">
     <div class="container my-5">
       <h2>Music</h2>
         <table class="table">

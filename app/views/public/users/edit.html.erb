@@ -1,28 +1,22 @@
 
-<div class="container col-12">
-  <div class="mt-4">
-  <h4 class="text-center bg-light"><span style="background-color: gainsboro"><%= @user.name %>さんの会員情報編集</span></h1>
-  </div>
+<div class="container my-5">
+  <h4 class="text-center"><span style="background-color: gainsboro"><%= @user.name %>さんの会員情報編集</span></h1>
+
+  <div class="container my-5">
   <%= form_with model: @user, url: user_path(@user.id), method: :patch do |f| %>
-    <div class="form-group">
-      <div class="row mt-4 offset-md-1">
-        <div class="col-lg-2">会員ID</div>
-        <div class="col-lg-3"><%= @user.id %></div>
-      </div>
-    </div>
-    <div class="form-group">
+    <div class="row mb-3">
       <div class="row offset-md-1">
         <div class="col-lg-2"><%= f.label :profile_image,"プロフィール画像" %></div>
         <div class="col-lg-3"><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %></div>
       </div>
     </div>
-    <div class="form-group">
+    <div class="row mb-3">
       <div class="row offset-md-1">
         <div class="col-lg-2"><%= f.label :name,"ユーザーネーム" %></div>
         <div class="col-lg-3"><%= f.text_field :name, autofocus: true, class: "form-control border-dark" %></div>
       </div>
     </div>
-    <div class="form-group">
+    <div class="row mb-3">
       <div class="row offset-md-1">
         <div class="col-lg-2"><%= f.label :email,"メールアドレス" %></div>
         <div class="col-lg-3"><%= f.text_field :email, class: "form-control border-dark" %></div>
@@ -33,5 +27,6 @@
       <div class="col-lg-3 mt-4 offset-lg-3 text-center"><%= f.submit "編集内容を保存", style: 'width:150px', class: "btn btn-outline-success" %></div>
       <div class="col-lg-3 mt-4 text-center"><%= link_to "退会する", users_unsubscribe_path, style: 'width:150px', class: "btn btn-outline-danger" %></div>
     </div>
+  </div>
   <% end %>
 </div>
