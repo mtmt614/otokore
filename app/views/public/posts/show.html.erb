@@ -43,13 +43,13 @@
   <% if @post.liked_by?(current_user) %>
     <p>
       <%= link_to post_likes_path(@post), method: :delete do %>
-        ♥<%= @post.likes.count %> いいね
+        <i class="fas fa-heart unlike-btn"></i><%= @post.likes.count %>
       <% end %>
     </p>
       <% else %>
     <p>
       <%= link_to post_likes_path(@post), method: :post do %>
-        ♡<%= @post.likes.count %> いいね
+        </i><i class="far fa-heart like-btn"></i><%= @post.likes.count %>
       <% end %>
     </p>
   <% end %>
