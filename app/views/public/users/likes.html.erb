@@ -17,6 +17,7 @@
   
       <div class="card-link">
         <%= link_to post.user.name, user_path(post.user) %>
+        <%= render 'public/likes/like', post:post %>
       </div>
       </div>
     </div>

@@ -50,6 +50,8 @@
         <div class="py-3 ml-3">
           <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
           </div>
+          
+          <%= render 'public/likes/like', post:post %>
   
       <div class="card-link">
       </div>
