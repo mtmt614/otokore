@@ -1,27 +1,24 @@
 <div class="container my-5">
-  <h3 class="text-center"><span style="background-color: gainsboro">Like</span></h3>
+   <div class="contents-title text-center">
+     <h3>Like</h3>
+
+<div class="row">
+  <% @like_posts.each do |post| %>
+    <div class="col-md-3">
+      <div class="card">
+        <%= link_to post_path(post) do %>
+          <%= image_tag post.get_image, class: 'card-img-top' %>
+        <% end %>
+        <h5><%= post.title%></h5>
+        <%= post.artist %>
+        
+        <div class="py-3 ml-3">
+          </div>
   
-  <div class="container my-6">
-  <div class="text-center">
-  <table class="table">
-    <thead>
-      <tr>
-        <th></th>
-        <th>ユーザー</th>
-        <th>曲名</th>
-        <th>アーティスト</th>
-        <th>ジャンル</th>
-      </tr>
-    </thead>
-        <tbody>
-          <% @like_posts.each do |post| %>
-          <tr>
-            <td><%= image_tag post.user.get_profile_image(100,100) %></td>
-            <td><%= link_to post.user.name, user_path(post.user) %></td>
-            <td><%= link_to post.title, post_path(post)  %></td>
-            <td><%= post.artist %></td>
-            <td><%= post.genre.genrename %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <div class="card-link">
+        <%= link_to post.user.name, user_path(post.user) %>
+      </div>
+      </div>
+    </div>
+  <% end %>
+</div>

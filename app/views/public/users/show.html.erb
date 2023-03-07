@@ -1,7 +1,8 @@
 
 <% if user_signed_in? && current_user.id.to_s == params[:id] %>
 <div class="container my-5">
-<h3 class="text-center"><span style="background-color: gainsboro">My Page</span></h3>
+   <div class="contents-title text-center">
+     <h3>My Page</h3>
       <div class="container my-5">
         <div class="text-center">
           <%= image_tag @user.get_profile_image(100,100) %>
@@ -20,71 +21,40 @@
       </div>
        <% end %>
 
-  <div class="col-md-8 offset-md-2">
-    <div class="container my-5">
-      <h2>My Music</h2>
-        <table class="table">
-          <tr>
-            <th>投稿日</th>
-            <th>曲名</th>
-            <th>アーティスト</th>
-            <th>いいね</th>
-            <th>コメント</th>
-          <tr>
-
-          <% @posts.each do |post| %>
-          <tr>
-            <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
-            <td><%= link_to post.title, post_path(post)  %></td>
-            <td><%= post.artist %></td>
-            <td><%= post.likes.count %></td>
-            <td><%= post.comments.count %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <%= paginate @posts %>
-      </div>
-
-
       <% else %>
 
       <div class="container my-5">
-      <h3 class="text-center"><span style="background-color: gainsboro">User Info</span></h3>
+   <div class="contents-title text-center">
+     <h3>User</h3>
       <div class="container my-5">
         <div class="text-center">
           <%= image_tag @user.get_profile_image(100,100) %>
             <h5><%= @user.name %></h5>
         </div>
       </div>
-
-          <div class="col-md-8 offset-md-2">
-    <div class="container my-5">
-      <h2>Music</h2>
-        <table class="table">
-          <tr>
-            <th>投稿日</th>
-            <th>曲名</th>
-            <th>アーティスト</th>
-            <th>ジャンル</th>
-          <tr>
-
-          <% @posts.each do |post| %>
-          <tr>
-            <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
-            <td><%= link_to post.title, post_path(post)  %></td>
-            <td><%= post.artist %></td>
-            <td><%= post.genre.genrename %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <%= paginate @posts %>
-      </div>
       <% end %>
+   
+
+<div class="container my-5">
+   <div class="contents-title text-center">
+     <div class="row">
+  <% @posts.each do |post| %>
+    <div class="col-md-3">
+      <div class="card">
+        <%= link_to post_path(post) do %>
+          <%= image_tag post.get_image, class: 'card-img-top' %>
+        <% end %>
+        <h5><%= post.title%></h5>
+        <%= post.artist %>
+        
+        <div class="py-3 ml-3">
+          <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
+          </div>
+  
+      <div class="card-link">
+      </div>
+      </div>
     </div>
-  </div>
+  <% end %>
+    <%= paginate @posts %>
 </div>
-
-
-
