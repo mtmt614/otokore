@@ -1,6 +1,6 @@
-
-  <div class="container my-5">
+<div class="container my-5">
    <div class="contents-title text-center">
+     <%= flash[:notice] %>
      <h3>MUSIC</h3>
      
     <div class='row my-3'>
@@ -21,23 +21,17 @@
   <% @posts.each do |post| %>
     <div class="col-md-3">
       <div class="card">
+        <div class="card b-block">
         <%= link_to post_path(post) do %>
           <%= image_tag post.get_image, class: 'card-img-top' %>
         <% end %>
+        </div>
         <h5><%= post.title%></h5>
         <%= post.artist %>
-        
-        <div class="py-3 ml-3">
-          </div>
-  
-      <div class="card-link">
-        <%= link_to post.user.name, user_path(post.user) %>
-      </div>
-      
-      
-        <%= render 'public/likes/like', post: post %>
-      
+        <span><i class="fas fa-user"></i><%= link_to post.user.name,user_path(post.user) %></span>
+        <span><p class="text-center"><%= render 'public/likes/like', post: post %></p></span>
       </div>
     </div>
   <% end %>
+   <%= paginate @posts %>
 </div>
