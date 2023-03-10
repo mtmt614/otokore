@@ -9,6 +9,7 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
      if @post.save
+       flash[:notice] = "投稿が成功しました"
        redirect_to posts_path
      else
        render :new
@@ -38,6 +39,7 @@ class Public::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
+      flash[:notice] = "編集を適用しました"
       redirect_to post_path(@post)
     else
       render :edit
@@ -46,8 +48,10 @@ class Public::PostsController < ApplicationController
   
   def destroy
     if @post = Post.find(params[:id]).destroy
+      flash[:notice] = "投稿を削除しました"
       redirect_to posts_path
     else
+      flash[:danger] = "エラーが発生しました"
       redirect_to "/"
     end
   end
@@ -60,7 +64,7 @@ class Public::PostsController < ApplicationController
    
    def ensure_guest_user
     if current_user.email == "guest@email.com"
-      redirect_to user_path(current_user) , notice: 'ゲストユーザーはこの操作を行うことができません。'
+      redirect_to user_path(current_user)
     end
    end
 

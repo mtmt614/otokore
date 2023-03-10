@@ -1,3 +1,9 @@
+<div class="container">
+  <div class="row mb-3">
+    <div class="col p-0 alert alert-success p-0 border-0">
+      <h5 class="text-center"><%= flash[:notice] %></h5>
+    </div>
+  </div>
 
 <% if user_signed_in? && current_user.id.to_s == params[:id] %>
 <div class="container my-5">
@@ -54,11 +60,7 @@
         <% end %>
         <h5><%= post.title%></h5>
         <%= post.artist %>
-        
-        <div class="py-3 ml-3">
-          <td><%= post.created_at.strftime('%Y/%m/%d') %></td>
-          </div>
-          
+
           <%= render 'public/likes/like', post:post %>
           <span><%= link_to "#{post.comments.count}コメント", post_path(post.id), class:"text-dark" %></span>
           
