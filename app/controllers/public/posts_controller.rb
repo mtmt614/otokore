@@ -8,7 +8,7 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-     if @post.save!
+     if @post.save
        redirect_to posts_path
      else
        render :new
@@ -16,9 +16,9 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @genres = Genre.all
+    @genres = Genre.page(params[:page])
     @all_posts = Post.all
-    @posts = Post.page(params[:page]).per(10)
+    @posts = Post.page(params[:page]).per(8)
     if params[:genre_id].present?
       @genre = Genre.find(params[:genre_id])
       @posts = @genre.posts
@@ -28,6 +28,7 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
+    @comments = Comment.all.page(params[:page]).per(5)
   end
   
   def edit

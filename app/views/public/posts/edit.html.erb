@@ -1,5 +1,20 @@
+<div class="container">
+  <div class="row mb-3">
+    <div class="col p-0 alert alert-warning p-0 border-0">
+      <% if @post.errors.any? %>
+        <h5 class="text-center"><%= @post.errors.size %>件のエラーが発生しました</h5>
+        <ul>
+          <% @post.errors.full_messages.each do |message| %>
+            <h6 class="text-center"><li><%= message %></li></h6>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+
 <div class="container my-5">
   <h4 class="text-center"><span style="background-color: gainsboro">投稿編集</span></h4>
+  
   
   <div class="container my-5">
     <div class="text-center">

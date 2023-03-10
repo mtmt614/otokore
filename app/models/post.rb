@@ -1,5 +1,8 @@
 class Post < ApplicationRecord
   
+  validates :title, presence: true
+  validates :artist, presence: true
+  
   belongs_to :user
   belongs_to :genre, optional: true
   has_many :likes, dependent: :destroy

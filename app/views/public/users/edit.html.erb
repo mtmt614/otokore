@@ -1,4 +1,17 @@
-
+<div class="container">
+  <div class="row mb-3">
+    <div class="col p-0 alert alert-warning p-0 border-0">
+      <% if @user.errors.any? %>
+        <h5 class="text-center"><%= @user.errors.size %>件のエラーが発生しました</h5>
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <h6 class="text-center"><li><%= message %></li></h6>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+  
 <div class="container my-5">
   <h4 class="text-center"><span style="background-color: gainsboro"><%= @user.name %>さんの会員情報編集</span></h1>
 
