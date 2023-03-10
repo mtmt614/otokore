@@ -10,22 +10,22 @@
                
     <ul>
       <li>
-        <h3>User</h3>
+        <h3><i class="fas fa-user-alt"></i>User</h3>
         <p>
           会員未登録でもゲストとして閲覧できますが、会員登録をしていただくと<br>
-          いいね機能やコメント機能、検索もあわせてご利用いただけます。
+          いいね機能やコメント機能、検索もあわせてご利用いただけます。<br>
+          <%= link_to '登録する', new_user_registration_path, class: "btn btn-outline-dark" %>
         </p>
-        <%= link_to '登録する', new_user_registration_path, class: "btn btn-outline-dark" %>
       </li>
       
       <li>
-        <h3>♡Like</h3>
+        <h3><i class="fas fa-heart"></i>Like</h3>
         <p>
           いいねはブックマークでもあるので、お気に入りの投稿をいつでも見返すことができます。
         </p>
       </li>
       <li>
-        <h3>Communication</h3>
+        <h3><i class="fas fa-comment-dots"></i>Communication</h3>
         <p>
           サイト上で他の会員様とやりとりを行うことができます。<br>
           感想を言い合ったり、情報交換などができるようになっています。
