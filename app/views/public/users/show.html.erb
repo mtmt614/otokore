@@ -13,12 +13,20 @@
       <% if @user == current_user %>
       <% if current_user.email != 'guest@email.com'%>
         <div class="row">
-        <div class="col-lg-3 mt-4 offset-lg-3 text-center"><%= link_to "プロフィール編集", users_my_page_edit_path, style: 'width:160px', class: "btn btn-outline-success" %></div>
+        <div class="col-lg-3 mt-4 offset-lg-3 text-center">
+          <%= link_to users_my_page_edit_path, style: 'width:150px', class: "btn btn-outline-success" do %>
+             <i class="fas fa-user-cog"></i>
       <% end %>
       <% end %>
+        </div>
+      <% end %>
+      
         <% if current_user.email != 'guest@email.com'%>
-        <div class="col-lg-3 mt-4 text-center"><%= link_to "いいねした投稿", likes_user_path(@user), style: 'width:150px', class: "btn btn-outline-danger" %></div>
-      </div>
+        <div class="col-lg-3 mt-4 text-center">
+          <%= link_to likes_user_path(@user), style: 'width:150px', class: "btn btn-outline-danger" do %>
+            </i><i class="fas fa-heart unlike-btn"></i>
+          <% end %>
+        </div>
        <% end %>
 
       <% else %>
@@ -52,11 +60,13 @@
           </div>
           
           <%= render 'public/likes/like', post:post %>
-  
+          <span><%= link_to "#{post.comments.count}コメント", post_path(post.id), class:"text-dark" %></span>
+          
       <div class="card-link">
       </div>
       </div>
     </div>
   <% end %>
-    <%= paginate @posts %>
+  <%= paginate @posts %>
 </div>
+
