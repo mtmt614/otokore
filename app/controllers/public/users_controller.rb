@@ -5,7 +5,7 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.page(params[:page]).per(8)
+    @posts = @user.posts.order('created_at DESC').page(params[:page]).per(8)
   end
 
   def edit
@@ -36,8 +36,8 @@ class Public::UsersController < ApplicationController
   
   def likes
     @user = User.find(params[:id])
-    likes= Like.where(user_id: @user.id).pluck(:post_id)
-    @like_posts = Post.find(likes)
+    likes = Like.where(user_id: @user.id).pluck(:post_id)
+    @like_posts = Post.where(id: likes).order('created_at DESC').page(params[:page]).per(8)
   end
 
 

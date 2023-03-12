@@ -26,12 +26,12 @@ class Public::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
   def after_sign_in_path_for(resource)
-    flash[:notice] = 'ログインしました'
+    flash[:notice] = "ログインしました"
     root_path
   end
 
   def after_sign_out_path_for(resource)
-    flash[:notice] = 'ログアウトしました'
+    flash[:notice] = "ログアウトしました"
     root_path
   end
   
@@ -47,7 +47,7 @@ class Public::SessionsController < Devise::SessionsController
   def guest_sign_in
     user = User.guest
     sign_in user
-    flash[:notice] = 'ゲストログインしました'
+    flash[:notice] = "ゲストログインしました"
     redirect_to root_path
   end
   
