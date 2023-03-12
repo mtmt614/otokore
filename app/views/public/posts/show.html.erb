@@ -1,157 +1,54 @@
-<div class="container">
-  <div class="row mb-3">
-    <div class="col p-0 alert alert-success p-0 border-0">
-      <h5 class="text-center"><%= flash[:notice] %></h5>
+<% if flash[:notice] %>
+  <div class="container">
+    <div class="row mb-3">
+      <div class="col p-0 alert alert-success p-0 border-0">
+        <h5 class="text-center"><%= flash[:notice] %></h5>
+      </div>
     </div>
   </div>
+<% end %> 
+ 
+ <section class="container mb-5">
 
 <% if @post.user == current_user %>
     <div class="col-2 ml-auto">
         <%= link_to "編集する", edit_post_path, class:"btn btn-primary py-1" %>
       </div>
   <% end %>
-
-<div class="container my-5">
-    <div class="text-center">
-
-      <div class="h4 col-md-5" >
-          <%= image_tag @post.get_image %>
-      </div>
-
-      <div class="row">
-        <div class="h4 col-md-5" >
-          <%= @post.title %>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="h4 col-md-5" >
-          <%= @post.artist %>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="h4 col-md-5" >
-          <%= @post.genre.genrename %>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="h4 col-md-5" >
-          <%= @post.content %>
-        </div>
-      <div class="row">
-        <div class="h4 col-md-5" >
-          <%= @post.created_at.strftime('%Y/%m/%d') %>
-        </div>
-      </div>
-
-  <%= render 'public/likes/like', post:@post %>
-  </div>
-  </div>
-
-  <% if current_user.email != 'guest@email.com'%>
-  <div class="row mb-3 ">
-      <div class="col-md-9 px-0 mx-auto">
-        <table id="comments">
-  <% @post.comments.each do |comment| %>
-  <tr>
-    <td><%= comment.user.name %>：</td>
-    <td><%= comment.body %></td>
-    <td>(<%= comment.created_at.strftime('%Y/%m/%d') %>)</td>
-    <td>
-       <% if comment.user == current_user %>
-        <%= link_to post_comment_path(post_id: comment.post_id, id: comment.id), method: :delete, class: 'btn btn-default',data: { confirm: '削除しますか？' } do %>
-          <i class="fas fa-trash-alt"></i>
-        <% end %>
-       <% end %>
-    </td>
-  </tr>
-<% end %>
-</table>
-      </div>
+   <div class="row mb-2">
+    <div class="col-lg-6">
+     <%= image_tag @post.get_image, class: 'd-block mx-auto' %>
     </div>
-<%= paginate @comments %>
-<div class="row mb-3">
-      <div class="col-md-9 px-0 mx-auto">
-<%= form_with(model:[@post, @comment], local: false, class:"form-inline") do |f| %>
-  <%= f.text_area :body, class:"col-md-3 form-control", size:"20x1", placeholder: "コメントをここに" %>
-  <%= f.submit "投稿", class:"btn btn-primary py-1" %>
-<% end %>
-</div>
-    </div>
-
-
-<% end %>
-    </div>
-  </div>
-</div>
-
-
-<h2 class="text-center m-5 border-bottom p-1">Music</h2>
-
-  <section class="container mb-5">
-
-   <div class="row p-0 d-flex mb-2 justify-content-center">
-    <div class="col-md-10 col-lg-6">
-     <%= image_tag @post.get_image %>
-    </div>
-    <div class="col-md-10 col-lg-6 pt-4">
+    <div class="col-lg-6 pt-4">
      <h3 class="text-center"><%= @post.title %></h3>
      <h4 class="text-center"><%= @post.artist %></h4>
      <h4 class="text-center"><%= @post.genre.genrename %></h4>
      <p class="text-center"><%= @post.content %></p>
      <p class="text-center"><%= @post.created_at.strftime('%Y/%m/%d') %></p>
-     <p class="text-center">
-       <% @post.comments.each do |comment| %>
-  <tr>
-    <td><%= comment.user.name %>：</td>
-    <td><%= comment.body %></td>
-    <td>(<%= comment.created_at.strftime('%Y/%m/%d') %>)</td>
-    <td>
-      <% if comment.user == current_user %>
-        <%= link_to "削除", post_comment_path(post_id: comment.post_id, id: comment.id), method: :delete, remote: true, class:"btn btn-danger py-1", data: { confirm: '削除しますか？' } %>
-      <% end %>
-      <% if comment.user == current_user %>
-        <%= link_to post_comment_path(post_id: comment.post_id, id: comment.id), method: :delete, class: 'btn btn-default',data: { confirm: '削除しますか？' } do %>
-          <i class="fas fa-trash-alt"></i>
-        <% end %>
+     <h5 class="text-center">
+       <%= render 'public/likes/like', post:@post %>
+       </h5>
+  
+  <% if current_user.email != 'guest@email.com'%>
+  <% @comments.each do |comment| %>
+    <div class="text-center"><%= comment.user.name %>：<%= comment.body %> : (<%= comment.created_at.strftime('%Y/%m/%d') %>)
+       <% if comment.user == current_user %>
+          <%= link_to post_comment_path(post_id: comment.post_id, id: comment.id), method: :delete, class: 'btn btn-default', data: { confirm: '削除しますか？' } do %>
+           <i class="fas fa-trash-alt"></i>
+          <% end %>
        <% end %>
-    </td>
-  </tr>
-  <% end %>
-     <%= form_with(model:[@post, @comment], local: false, class:"form-inline") do |f| %>
-        <%= f.text_area :body, class:"col-md-4 form-control", size:"20x1", placeholder: "コメントをここに" %>
-        <%= f.submit "投稿", class:"btn btn-primary py-1" %>
-     <% end %></p>
-     <p class="text-center"><%= render 'public/likes/like', post:@post %></p>
+    </div>
+ <% end %>
+ 
+<%= paginate @comments %>
+
+<%= form_with(model:[@post, @comment], local: false, class:"form-inline") do |f| %>
+  <%= f.text_area :body, class:"col-md-5 form-control", size:"20x1", placeholder: "コメントをここに" %>
+  <%= f.submit "投稿", class:"btn btn-primary py-1" %>
+<% end %>
+    </div>
+    </div>
+<% end %>
     </div>
    </div>
-
   </section>
-  
-  
-  
-  <div class="card w-50 mx-auto mt-5 shadow-lg">
-  <%= image_tag @post.get_image, class:"card-img-top"; %>
-  
-  <div class="card-body">
-    <div class="row">
-      <div class="col-2">
-        <%#= image_tag @user.get_profile_image(100,100), class:"mt-3 rounded-circle"; %>
-        
-      </div>
-      <div class="col-10">
-        <p class="card-title">
-          <%#= link_to @post.title(post_image_path(post_image.id), class:"text-dark") do %>
-            <strong><span> <%#= post_image.shop_name %></span></strong>
-          <%# end %>
-        </p>
-        <p class="card-text"><%= @post.title %></p>
-        <p class="card-text"><%= @post.artist %></p>
-        <!--<span><i class="fas fa-user"></i><%#= @users.name %> ｜ </span>-->
-        <span><i class="text-center"><%= render 'public/likes/like', post:@post %></i></span>
-      </div>
-    </div>
-  </div>
-</div>
