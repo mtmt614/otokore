@@ -1,15 +1,17 @@
-<div class="container">
-  <div class="row mb-3">
-    <div class="col p-0 alert alert-success p-0 border-0">
-      <h5 class="text-center"><%= flash[:notice] %></h5>
+<% if flash[:notice] %>
+  <div class="container">
+    <div class="row mb-3">
+      <div class="col p-0 alert alert-success p-0 border-0">
+        <h5 class="text-center"><%= flash[:notice] %></h5>
+      </div>
     </div>
   </div>
-</div>
+<% end %>
 
 <div class="container my-5">
    <div class="contents-title text-center">
      <h3>MUSIC</h3>
-     
+
     <div class='row my-3'>
       <div class="col-md-10 mx-auto">
         <div class="row">
@@ -23,22 +25,27 @@
       <div class="genres py-3 ml-3">
         <%= render 'admin/genres/genre_search', genres: @genres %>
       </div>
-      
+
  <div class="row">
   <% @posts.each do |post| %>
-    <div class="col-md-3">
+    <div class="col-md-3 mb-3">
       <div class="card">
-        <div class="card b-block">
         <%= link_to post_path(post) do %>
-          <%= image_tag post.get_image, class: 'card-img-top' %>
+          <%= image_tag post.get_image, class: 'card-img-top post-index-card-img' %>
         <% end %>
+        <div class="card-body">
+          <h5 class="card-title"><%= post.title.truncate(10) %></h5>
+          <div class="card-text">
+            <%= post.artist %>
+            <div><i class="fas fa-user"></i><%= link_to post.user.name,user_path(post.user) %></div>
+          </div>
         </div>
-        <h5><%= post.title%></h5>
-        <%= post.artist %>
-        <span><i class="fas fa-user"></i><%= link_to post.user.name,user_path(post.user) %></span>
-        <span><p class="text-center"><%= render 'public/likes/like', post: post %></p></span>
+        <div class="card-footer text-right">
+          <%= render 'public/likes/like', post: post %>
+        </div>
       </div>
     </div>
   <% end %>
+
    <%= paginate @posts %>
 </div>
