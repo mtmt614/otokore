@@ -1,72 +1,55 @@
-<div class='container col-12 px-5 px-sm-0'>
-  <div class="mt-4">
-  <h4 class="text-center bg-light"><span style="background-color: gainsboro">詳細</span></h4>
-  </div>
-
-  <div class="row mt-5">
-    <div class="col-md-6">
-      <div class="row">
-        <div class="col-md-3">
-          <%= "ユーザー" %>
-        </div>
-        <div class="h4 col-md-5">
-          <%= @post.user.name %>
-        </div>
+<% if flash[:notice] %>
+  <div class="container">
+    <div class="row mb-3">
+      <div class="col p-0 alert alert-success p-0 border-0">
+        <h5 class="text-center"><%= flash[:notice] %></h5>
       </div>
-
-      <div class="row">
-        <div class="col-md-3">
-          <%= "曲名" %>
-        </div>
-        <div class="h4 col-md-5" >
-          <%= @post.title %>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-3">
-          <%= "アーティスト" %>
-        </div>
-        <div class="h4 col-md-5" >
-          <%= @post.artist %>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-3">
-          <%= "ジャンル" %>
-        </div>
-        <div class="h4 col-md-5" >
-          <%= @post.genre.genrename %>
-        </div>
-      </div>
-      
-      <div class="row">
-        <div class="col-md-3">
-          <%= "ひとこと" %>
-        </div>
-        <div class="h4 col-md-5" >
-          <%= @post.content %>
-        </div>
-      </div>
-      
-    <p>♥<%= @post.likes.count %> いいね</p>
-  
-  <div>
-  <p>コメント件数：<%= @post.comments.count %></p>
-  <% @post.comments.each do |comment| %>
-    <%= comment.user.name %>
-    <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.body %>
-      <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
-  </div>
-    <% end %>
-  
-
-
-        <div class="row mt-3">
-          <%= link_to "編集する", edit_admin_post_path(@post), class: "col-md-8" %>
-          
-        </div>
     </div>
   </div>
-</div>
+<% end %>
+
+ <section class="container mb-5">
+
+  <div class="col-2 ml-auto">
+      <%= link_to edit_admin_post_path, class: "btn btn-outline-success" do %>
+      <i class="far fa-edit"></i>
+      <% end %>
+  </div>
+
+  <div class="row mb-2">
+    <div class="col-lg-6">
+     <%= image_tag @post.get_image, class: 'd-block mx-auto' %>
+    </div>
+    <div class="col-lg-6 pt-4">
+      <h3 class="text-center"><%= @post.title %></h3>
+      <h4 class="text-center"><%= @post.artist %></h4>
+      <h4 class="text-center"><%= @post.genre.genrename %></h4>
+      <p class="text-center"><%= @post.content %></p>
+      <p class="text-center"><%= @post.created_at.strftime('%Y/%m/%d') %></p>
+
+
+     
+  <div class="container my-5">
+  <% @comments.each do |comment| %>
+    <div class="text-center">
+      <span class="font-weight-bold"><%= comment.user.name %></span>
+      <small class="text-black-50">
+        (<%= comment.created_at.strftime('%Y/%m/%d') %>)
+      </small>
+          <small>
+            <%= link_to post_comment_path(post_id: comment.post_id, id: comment.id), method: :delete, class: 'text-black-50', data: { confirm: '削除しますか？' } do %>
+             <i class="fas fa-trash-alt"></i>
+            <% end %>
+          </small>
+      <%= simple_format(comment.body) %>
+
+      <hr class="hr">
+    </div>
+              <% end %>
+            </div>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</section>

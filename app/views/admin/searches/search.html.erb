@@ -3,20 +3,30 @@
       <h4>"<%= @word_for_search %>"の検索結果</h4>
     </div>
     <% if @posts.present? %>
-      <table class="table table-inverse table-hover">
-        <% @posts.each do |post| %>
-          <tr>
-            <td class="align-middle"><p><%= post.title %></p></td>
-            <td class="align-middle"><p><%= post.artist %></p></td>
-            <td class="align-middle"><p><%= post.genre.genrename %></p></td>
-            <td class="align-middle"><p><%= post.content %></p></td>
-          </tr>
+       <div class="container my-5">
+ <div class="row">
+  <% @posts.each do |post| %>
+    <div class="col-md-3 mb-3">
+      <div class="card">
+        <%= link_to admin_post_path(post) do %>
+          <%= image_tag post.get_image, class: 'card-img-top post-index-card-img' %>
         <% end %>
-      </table>
+        <div class="card-body">
+          <h5 class="card-title"><%= post.title.truncate(10) %></h5>
+          <div class="card-text">
+            <%= post.artist %>
+            <div><i class="fas fa-user"></i><%= link_to post.user.name,admin_user_path(post.user) %></div>
+          </div>
+      </div>
+    </div>
+        <% end %>
+        </div>
+        
     <% else %>
       <div class="text-center mb-5">
         <h4>見つかりませんでした</h4>
       </div>
     <% end %>
+    <%= paginate @posts %>
     </div>
   </div>

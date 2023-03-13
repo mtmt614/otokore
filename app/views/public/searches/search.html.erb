@@ -3,33 +3,36 @@
       <h4>"<%= @word_for_search %>"の検索結果</h4>
     </div>
     
-    <div class="col-md-8 offset-md-2">
-    <div class="container my-5">
-    <table class="table">
-    <thead>
-      <tr>
-        <th></th>
-        <th>ユーザー</th>
-        <th>曲名</th>
-        <th>アーティスト</th>
-        <th>ジャンル</th>
-      </tr>
-    </thead>
+    
     <% if @posts.present? %>
-        <% @posts.each do |post| %>
-          <tr>
-            <td><%= image_tag post.user.get_profile_image(100,100) %></td>
-            <td><%= link_to post.user.name, user_path(post.user) %></td>
-            <td><%= link_to post.title, post_path(post)  %></td>
-            <td><%= post.artist %></td>
-            <td><%= post.genre.genrename %></td>
-          </tr>
+        
+        <div class="container my-5">
+ <div class="row">
+  <% @posts.each do |post| %>
+    <div class="col-md-3 mb-3">
+      <div class="card">
+        <%= link_to post_path(post) do %>
+          <%= image_tag post.get_image, class: 'card-img-top post-index-card-img' %>
         <% end %>
-      </table>
+        <div class="card-body">
+          <h5 class="card-title"><%= post.title.truncate(10) %></h5>
+          <div class="card-text">
+            <%= post.artist %>
+            <div><i class="fas fa-user"></i><%= link_to post.user.name,user_path(post.user) %></div>
+          </div>
+        </div>
+        <div class="card-footer text-right">
+          <%= render 'public/likes/like', post: post %>
+        </div>
+      </div>
+    </div>
+        <% end %>
+        </div>
     <% else %>
       <div class="text-center mb-5">
         <h4>見つかりませんでした</h4>
       </div>
     <% end %>
+    <%= paginate @posts %>
     </div>
   </div>

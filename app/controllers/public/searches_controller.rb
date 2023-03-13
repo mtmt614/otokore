@@ -5,7 +5,7 @@ class Public::SearchesController < ApplicationController
       .where("title LIKE ? or artist LIKE ? or content LIKE ?", "%#{@word_for_search}%", "%#{@word_for_search}%", "%#{@word_for_search}%")
       .eager_load(:user, :likes, :comments)
       .page(params[:page])
-      .per(10)
+      .per(8)
       .reverse_order
   end
 end

@@ -1,42 +1,26 @@
 <div class="container my-5">
-  <h4 class="text-center bg-light"><span style="background-color: gainsboro">投稿一覧</span></h4>
-  <div class='row my-3'>
-    <div class="col-md-10 mx-auto">
-      <div class="row">
-        <div class="col text-right">
-          <%= link_to new_post_path,class: 'btn btn-default' do %>
-           <i class="fas fa-plus-circle fa-2x"></i>
-          <% end %>
+   <div class="contents-title text-center">
+     <h3>MUSIC</h3>
+     
+<div class="container my-5">
+ <div class="row">
+  <% @posts.each do |post| %>
+    <div class="col-md-3 mb-3">
+      <div class="card">
+        <%= link_to admin_post_path(post) do %>
+          <%= image_tag post.get_image, class: 'card-img-top post-index-card-img' %>
+        <% end %>
+        <div class="card-body">
+          <h5 class="card-title"><%= post.title.truncate(10) %></h5>
+          <div class="card-text">
+            <%= post.artist %>
+            <div><i class="fas fa-user"></i><%= link_to post.user.name,admin_user_path(post.user) %></div>
+          </div>
         </div>
       </div>
-      
-      <div class="genres py-3 ml-3">
-        <%= render 'admin/genres/genre_search', genres: @genres %>
-      </div>
-
-      <table class='table'>
-        <thead>
-          <tr>
-            <th></th>
-            <th>ユーザー名</th>
-            <th>曲名</th>
-            <th>アーティスト</th>
-            <th>ジャンル</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @posts.each do |post| %>
-          <tr>
-            <td><%= image_tag post.user.get_profile_image(100,100) %></td>
-            <td><%= link_to post.user.name, admin_user_path(post.user.id) %></td>
-            <td><%= link_to post.title, admin_post_path(post)  %></td>
-            <td><%= post.artist %></td>
-            <td><%= post.genre.genrename %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <%= paginate @posts %>
     </div>
-  </div>
+  <% end %>
+
+   <%= paginate @posts %>
+</div>
 </div>

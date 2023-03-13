@@ -6,16 +6,19 @@
       </div>
     </div>
   </div>
-<% end %> 
- 
+<% end %>
+
  <section class="container mb-5">
 
 <% if @post.user == current_user %>
     <div class="col-2 ml-auto">
-        <%= link_to "編集する", edit_post_path, class:"btn btn-primary py-1" %>
-      </div>
-  <% end %>
-   <div class="row mb-2">
+        <%= link_to edit_post_path, class: "btn btn-outline-success" do %>
+        <i class="far fa-edit"></i>
+        <% end %>
+    </div>
+<% end %>
+
+  <div class="row mb-2">
     <div class="col-lg-6">
      <%= image_tag @post.get_image, class: 'd-block mx-auto' %>
     </div>
@@ -28,27 +31,52 @@
      <h5 class="text-center">
        <%= render 'public/likes/like', post:@post %>
        </h5>
-  
-  <% if current_user.email != 'guest@email.com'%>
+
+  <% if user_signed_in? && current_user.email != 'guest@email.com'%>
+  <div class="container my-5">
   <% @comments.each do |comment| %>
-    <div class="text-center"><%= comment.user.name %>：<%= comment.body %> : (<%= comment.created_at.strftime('%Y/%m/%d') %>)
-       <% if comment.user == current_user %>
-          <%= link_to post_comment_path(post_id: comment.post_id, id: comment.id), method: :delete, class: 'btn btn-default', data: { confirm: '削除しますか？' } do %>
-           <i class="fas fa-trash-alt"></i>
-          <% end %>
+    <div class="text-center">
+      <span class="font-weight-bold"><%= comment.user.name %></span>
+      <small class="text-black-50">
+        (<%= comment.created_at.strftime('%Y/%m/%d') %>)
+      </small>
+      <% if comment.user == current_user %>
+          <small>
+            <%= link_to post_comment_path(post_id: comment.post_id, id: comment.id), method: :delete, class: 'text-black-50', data: { confirm: '削除しますか？' } do %>
+             <i class="fas fa-trash-alt"></i>
+            <% end %>
+          </small>
        <% end %>
+      <%= simple_format(comment.body) %>
+
+      <hr class="hr">
     </div>
- <% end %>
- 
+   <% end %>
+
+
 <%= paginate @comments %>
 
-<%= form_with(model:[@post, @comment], local: false, class:"form-inline") do |f| %>
-  <%= f.text_area :body, class:"col-md-5 form-control", size:"20x1", placeholder: "コメントをここに" %>
-  <%= f.submit "投稿", class:"btn btn-primary py-1" %>
+        <% if user_signed_in? %>
+          <div class="row">
+            <div class="col-12 col-md-8 mx-auto">
+              <%= form_with(model:[@post, @comment], local: false) do |f| %>
+                <%= f.text_area :body, class:"form-control", rows: 2, placeholder: "コメントをここに" %>
+
+                <div class="row mt-3">
+                  <div class="col-12 col-md-6 mx-auto">
+                    <%= f.submit "投稿", class:"btn btn-primary btn-block" %>
+                  </div>
+                </div>
+
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+
 <% end %>
-    </div>
-    </div>
-<% end %>
-    </div>
-   </div>
-  </section>
+
+
+</div>
+</div>
+</div>
+</section>

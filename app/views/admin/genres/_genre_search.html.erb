@@ -2,7 +2,6 @@
 <div class="field">
 <%= form_with url: posts_path, local: true, method: :get do |f| %>
       <%= f.select :genre_id, Genre.pluck(:genrename, :id), {}, {class: 'form-control-sm col-lg-2'}%>
-      <%#= f.submit "検索", class:"btn btn-outline-dark btn-sm" %>
       <button class="btn btn-secondary btn-circle btn-circle-sm m-1"><i class="fa fa-search"></i></button>
     <% end %>
     </div>

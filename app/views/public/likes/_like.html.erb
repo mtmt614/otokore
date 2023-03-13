@@ -1,16 +1,15 @@
-<% if current_user.email != 'guest@email.com'%>   
+<% if user_signed_in? && current_user.email != 'guest@email.com'%>
   <% if post.liked_by?(current_user) %>
-    <p>
+    <div>
       <%= link_to post_likes_path(post), method: :delete do %>
         <i class="fas fa-heart unlike-btn"></i><%= post.likes.count %>
       <% end %>
-    </p>
+    </div>
       <% else %>
-    <p>
+    <div>
       <%= link_to post_likes_path(post), method: :post do %>
         </i><i class="far fa-heart like-btn"></i><%= post.likes.count %>
       <% end %>
-    </p>
+    </div>
   <% end %>
 <% end %>
-  
