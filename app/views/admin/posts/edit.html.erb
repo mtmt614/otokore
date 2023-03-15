@@ -1,43 +1,41 @@
 <div class="container col-12">
   <h4 class="text-center bg-light"><span style="background-color: gainsboro">投稿編集</span></h4>
-  
   <div class="container my-5">
     <div class="text-center">
       <div class="row g-3 d-flex justify-content-center">
-  
-  <%= form_with class: "col-md-8", model: @post, url: admin_post_path, method: :patch do |f| %>
-  
-      <div class="row mb-3">
-          <%= f.label :image,"写真", class: "col-md-3 col-form-label" %>
-          <div class="col-lg-3"><%= f.file_field :image, placeholder: "写真", accept: "image/*" %></div>
+        <%= form_with class: "col-md-8", model: @post, url: admin_post_path, method: :patch do |f| %>
+          <div class="row mb-3">
+            <%= f.label :image,"写真", class: "col-md-3 col-form-label" %>
+              <div class="col-lg-3">
+                <%= f.file_field :image, placeholder: "写真", accept: "image/*" %>
+              </div>
+          </div>
+          <div class="row mb-3">
+            <%= f.label "曲名", class: "col-md-3 col-form-label" %>
+              <%= f.text_field :title, class: "col-md-5 form-control post_title" %>
+          </div>
+          <div class="row mb-3">
+            <%= f.label "アーティスト", class: "col-md-3 col-form-label" %>
+              <%= f.text_field :artist, class: "col-md-5 form-control post_artist" %>
+          </div>
+          <div class="row mb-3">
+            <%= f.label "ジャンル", class: "col-md-3 col-form-label" %>
+              <div class="w-25">
+                <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :genrename) %>
+              </div>
+          </div>
+          <div class="row mb-3">
+            <%= f.label "ひとこと", class: "col-md-3 col-form-label" %>
+              <%= f.text_area :content, class: "col-md-5 form-control post_content" %>
+          </div>
+          <div class="row">
+            <div class="col-lg-3 mt-4 offset-lg-3 text-center">
+              <%= f.submit "変更", style: 'width:150px', class: "btn btn-outline-success" %>
+            </div>
+            <div class="col-lg-3 mt-4 text-center">
+              <%= link_to "削除する", admin_post_path(params[:id]), style: 'width:150px', class: "btn btn-outline-danger", method: :delete, data: { confirm: '本当に削除しますか？' } %>
+            </div>
+          </div>
       </div>
-      
-      <div class="row mb-3">
-        <%= f.label "曲名", class: "col-md-3 col-form-label" %>
-        <%= f.text_field :title, class: "col-md-5 form-control post_title" %>
-      </div>
-      
-      <div class="row mb-3">
-        <%= f.label "アーティスト", class: "col-md-3 col-form-label" %>
-        <%= f.text_field :artist, class: "col-md-5 form-control post_artist" %>
-      </div>
-      
-      <div class="row mb-3">
-        <%= f.label "ジャンル", class: "col-md-3 col-form-label" %>
-        <div class="w-25">
-        <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :genrename) %>
-        </div>
-      </div>
-
-      <div class="row mb-3">
-        <%= f.label "ひとこと", class: "col-md-3 col-form-label" %>
-        <%= f.text_area :content, class: "col-md-5 form-control post_content" %>
-      </div>
-      
-      <div class="row">
-        <div class="col-lg-3 mt-4 offset-lg-3 text-center"><%= f.submit "変更", style: 'width:150px', class: "btn btn-outline-success" %></div>
-        <div class="col-lg-3 mt-4 text-center"><%= link_to "削除する", admin_post_path(params[:id]), style: 'width:150px', class: "btn btn-outline-danger", method: :delete, data: { confirm: '本当に削除しますか？' } %></div>
-      </div>
-</div>
-  <% end %>
-</div>
+      <% end %>
+    </div>

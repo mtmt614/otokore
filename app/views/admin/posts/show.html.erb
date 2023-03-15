@@ -2,56 +2,54 @@
   <div class="container">
     <div class="row mb-3">
       <div class="col p-0 alert alert-success p-0 border-0">
-        <h5 class="text-center"><%= flash[:notice] %></h5>
+        <h5 class="text-center">
+          <%= flash[:notice] %>
+        </h5>
       </div>
     </div>
   </div>
-<% end %>
-
- <section class="container mb-5">
-
-  <div class="col-2 ml-auto">
-      <%= link_to edit_admin_post_path, class: "btn btn-outline-success" do %>
-      <i class="far fa-edit"></i>
-      <% end %>
-  </div>
-
-  <div class="row mb-2">
-    <div class="col-lg-6">
-     <%= image_tag @post.get_image, class: 'd-block mx-auto' %>
-    </div>
-    <div class="col-lg-6 pt-4">
-      <h3 class="text-center"><%= @post.title %></h3>
-      <h4 class="text-center"><%= @post.artist %></h4>
-      <h4 class="text-center"><%= @post.genre.genrename %></h4>
-      <p class="text-center"><%= @post.content %></p>
-      <p class="text-center"><%= @post.created_at.strftime('%Y/%m/%d') %></p>
-
-
-     
-  <div class="container my-5">
-  <% @comments.each do |comment| %>
-    <div class="text-center">
-      <span class="font-weight-bold"><%= comment.user.name %></span>
-      <small class="text-black-50">
+  <% end %>
+    <section class="container mb-5">
+      <div class="col-2 ml-auto">
+        <%= link_to edit_admin_post_path, class: "btn btn-outline-success" do %> <i class="far fa-edit"></i>
+          <% end %>
+      </div>
+      <div class="row mb-2">
+        <div class="col-lg-6">
+          <%= image_tag @post.get_image, class: 'd-block mx-auto' %>
+        </div>
+        <div class="col-lg-6 pt-4">
+          <h3 class="text-center">
+            <%= @post.title %>
+          </h3>
+          <h4 class="text-center">
+            <%= @post.artist %>
+          </h4>
+          <h4 class="text-center">
+            <%= @post.genre.genrename %>
+          </h4>
+          <p class="text-center">
+            <%= @post.content %>
+          </p>
+          <p class="text-center">
+            <%= @post.created_at.strftime('%Y/%m/%d') %>
+          </p>
+          <div class="container my-5">
+            <% @comments.each do |comment| %>
+              <div class="text-center"> <span class="font-weight-bold"><%= comment.user.name %></span> <small class="text-black-50">
         (<%= comment.created_at.strftime('%Y/%m/%d') %>)
-      </small>
-          <small>
+      </small> <small>
             <%= link_to admin_post_comment_path(post_id: comment.post_id, id: comment.id), method: :delete, class: 'text-black-50', data: { confirm: '削除しますか？' } do %>
              <i class="fas fa-trash-alt"></i>
             <% end %>
           </small>
-      <%= simple_format(comment.body) %>
-
-      <hr class="hr">
-    </div>
-    <%= paginate @comments %>
-              <% end %>
-              
-            </div>
+                <%= simple_format(comment.body) %>
+                  <hr class="hr"> </div>
+              <%= paginate @comments %>
+                <% end %>
           </div>
-        
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+      </div>
+      </div>
+    </section>

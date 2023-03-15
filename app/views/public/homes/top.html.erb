@@ -1,22 +1,20 @@
 
-
-        <header class="masthead">
-            <div class="container">
-                <div class="container">
-
-
- <% if flash[:notice] %>
+<header class="masthead">
   <div class="container">
-    <div class="row mb-3">
-      <div class="col p-0 alert alert-success p-0 border-0">
-        <h5 class="text-center"><%= flash[:notice] %></h5>
-      </div>
-    </div>
-  </div>
-<% end %>
-                <div class="masthead-subheading">It's Nice To Meet You</div>
-                <div class="masthead-heading text-uppercase">Welcome To OtoKore!</div>
-                <%= link_to "OtoKoreとは？", about_path, class:"btn btn-warning" %>
+    <div class="container">
+      <% if flash[:notice] %>
+        <div class="container">
+          <div class="row mb-3">
+            <div class="col p-0 alert alert-success p-0 border-0">
+              <h5 class="text-center">
+                <%= flash[:notice] %>
+              </h5>
             </div>
-        </header>
-
+          </div>
+        </div>
+        <% end %>
+          <div class="masthead-subheading">It's Nice To Meet You</div>
+          <div class="masthead-heading text-uppercase">Welcome To OtoKore!</div>
+          <%= link_to "OtoKoreとは？", about_path, class:"btn btn-warning" %>
+    </div>
+</header>

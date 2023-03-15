@@ -2,78 +2,76 @@
   <div class="container">
     <div class="row mb-3">
       <div class="col p-0 alert alert-success p-0 border-0">
-        <h5 class="text-center"><%= flash[:notice] %></h5>
+        <h5 class="text-center">
+          <%= flash[:notice] %>
+        </h5>
       </div>
     </div>
   </div>
-<% end %>
-
-<% if user_signed_in? && current_user.id.to_s == params[:id] %>
-<div class="container my-5">
-   <div class="contents-title text-center">
-     <h3>My Page</h3>
-      <div class="container my-5">
-        <div class="text-center">
-          <%= image_tag @user.get_profile_image(100,100) %>
-            <h5><%= @user.name %></h5>
-        </div>
-      </div>
-
-      <% if @user == current_user %>
-      <% if current_user.email != 'guest@email.com'%>
-        <div class="row">
-        <div class="col-lg-3 mt-4 offset-lg-3 text-center">
-          <%= link_to users_my_page_edit_path, style: 'width:150px', class: "btn btn-outline-success" do %>
-             <i class="fas fa-user-cog"></i>
-      <% end %>
-      <% end %>
-        </div>
-      <% end %>
-      
-        <% if current_user.email != 'guest@email.com'%>
-        <div class="col-lg-3 mt-4 text-center">
-          <%= link_to likes_user_path(@user), style: 'width:150px', class: "btn btn-outline-danger" do %>
-            </i><i class="fas fa-heart unlike-btn"></i>
-          <% end %>
-        </div>
-       <% end %>
-
-      <% else %>
-
-      <div class="container my-5">
-   <div class="contents-title text-center">
-     <h3>User</h3>
-      <div class="container my-5">
-        <div class="text-center">
-          <%= image_tag @user.get_profile_image(100,100) %>
-            <h5><%= @user.name %></h5>
-        </div>
-      </div>
-      <% end %>
-   
-<div class="container my-5">
-<div class="row">
-  <% @posts.each do |post| %>
-    <div class="col-md-3 mb-3">
-      <div class="card">
-        <%= link_to post_path(post) do %>
-          <%= image_tag post.get_image, class: 'card-img-top post-index-card-img' %>
-        <% end %>
-        <div class="card-body">
-          <h5 class="card-title"><%= post.title.truncate(10) %></h5>
-          <div class="card-text">
-            <%= post.artist %>
-            
-          </div>
-        </div>
-        <div class="card-footer text-right">
-          <i class="fas fa-comment"></i><%= link_to "#{post.comments.count}", post_path(post.id), class:"text-dark" %>
-          <%= render 'public/likes/like', post: post %>
-        </div>
-      </div>
-    </div>
   <% end %>
-
-  <%= paginate @posts %>
-</div>
-
+    <% if user_signed_in? && current_user.id.to_s == params[:id] %>
+      <div class="container my-5">
+        <div class="contents-title text-center">
+          <h3>My Page</h3>
+          <div class="container my-5">
+            <div class="text-center">
+              <%= image_tag @user.get_profile_image(100,100) %>
+                <h5>
+                  <%= @user.name %>
+                </h5>
+            </div>
+          </div>
+          <% if @user == current_user %>
+            <% if current_user.email != 'guest@email.com'%>
+              <div class="row">
+                <div class="col-lg-3 mt-4 offset-lg-3 text-center">
+                  <%= link_to users_my_page_edit_path, style: 'width:150px', class: "btn btn-outline-success" do %> <i class="fas fa-user-cog"></i>
+                    <% end %>
+                      <% end %>
+                </div>
+                <% end %>
+                  <% if current_user.email != 'guest@email.com'%>
+                    <div class="col-lg-3 mt-4 text-center">
+                      <%= link_to likes_user_path(@user), style: 'width:150px', class: "btn btn-outline-danger" do %>
+                        </i><i class="fas fa-heart unlike-btn"></i>
+                        <% end %>
+                    </div>
+                    <% end %>
+                      <% else %>
+                        <div class="container my-5">
+                          <div class="contents-title text-center">
+                            <h3>User</h3>
+                            <div class="container my-5">
+                              <div class="text-center">
+                                <%= image_tag @user.get_profile_image(100,100) %>
+                                  <h5>
+                                    <%= @user.name %>
+                                  </h5>
+                              </div>
+                            </div>
+                            <% end %>
+                              <div class="container my-5">
+                                <div class="row">
+                                  <% @posts.each do |post| %>
+                                    <div class="col-md-3 mb-3">
+                                      <div class="card">
+                                        <%= link_to post_path(post) do %>
+                                          <%= image_tag post.get_image, class: 'card-img-top post-index-card-img' %>
+                                            <% end %>
+                                              <div class="card-body">
+                                                <h5 class="card-title">
+                                                  <%= post.title.truncate(10) %>
+                                                </h5>
+                                                <div class="card-text">
+                                                  <%= post.artist %>
+                                                </div>
+                                              </div>
+                                              <div class="card-footer text-right"> <i class="fas fa-comment"></i>
+                                                <%= link_to "#{post.comments.count}", post_path(post.id), class:"text-dark" %>
+                                                  <%= render 'public/likes/like', post: post %>
+                                              </div>
+                                      </div>
+                                    </div>
+                                    <% end %>
+                                      <%= paginate @posts %>
+                                </div>

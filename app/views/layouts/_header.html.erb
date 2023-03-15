@@ -1,64 +1,59 @@
 <header class="shadow-sm">
   <nav class="navbar navbar-expand-lg navbar-light">
-      <% if admin_signed_in? %>
-        <%= link_to "Otokore", root_path, class:"header-title navbar-brand"%>
-      <% else %>
-        <%= link_to "Otokore", root_path, class:"header-title navbar-brand"%>
-      <% end %>
-
-      <button class="navbar-toggler mx-5" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <% if admin_signed_in? %>
+      <%= link_to "Otokore", root_path, class:"header-title navbar-brand"%>
+        <% else %>
+          <%= link_to "Otokore", root_path, class:"header-title navbar-brand"%>
+            <% end %> <button class="navbar-toggler mx-5" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-         <% if user_signed_in? %>
-
-          <li class="nav-item ">
-            <%= link_to "マイページ", user_path(current_user), class: 'btn btn-outline-secondary mx-3 my-1'%>
-          </li>
-          <li class="nav-item ">
-            <%= link_to "投稿一覧", posts_path, class: 'btn btn-outline-secondary mx-3 my-1'%>
-          </li>
-            <% if current_user.email != 'guest@email.com'%>
-          <li class="nav-item">
-            <%= link_to "投稿する", new_post_path, class: 'btn btn-outline-secondary mx-3 my-1'%>
-          </li>
-            <% end %>
-          <li class="nav-item">
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete,class: 'btn btn-outline-secondary mx-3 my-1'%>
-          </li>
-            <%= render partial: 'layouts/searchform' %>
-            
-         <% elsif admin_signed_in? %>
-           <li class="nav-item">
-             <%= link_to "投稿一覧", admin_posts_path, class: 'btn btn-outline-secondary mx-3 my-1' %>
-           </li>
-           <li class="nav-item">
-             <%= link_to "会員一覧", admin_users_path,  class:'btn btn-outline-secondary mx-3 my-1'%>
-           </li>
-           <li class="nav-item">
-             <%= link_to "ジャンル一覧", admin_genres_path, class: 'btn btn-outline-secondary mx-3 my-1'%>
-           </li>
-           <li class="nav-item">
-             <%= link_to "ログアウト",destroy_admin_session_path, method: :delete,class: 'btn btn-outline-secondary mx-3 my-1'%>
-           </li>
-           <%= render partial: 'layouts/searchform' %>
-         <% else %>
-           <li class="nav-item">
-             <%= link_to "About", about_path,class: 'btn btn-outline-secondary mx-3 my-1' %>
-           </li>
-           <li class="nav-item">
-             <%= link_to "新規登録", new_user_registration_path,class: 'btn btn-outline-secondary mx-3 my-1'%>
-           </li>
-           <li class="nav-item">
-             <%= link_to "ログイン", new_user_session_path,class: 'btn btn-outline-secondary mx-3 my-1'%>
-           </li>
-           <li class="nav-item">
-             <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: 'btn btn-outline-secondary mx-3 my-1' %>
-           </li>
-          <% end %>
-        </ul>
-      </div>
-      <%#= render partial: 'layouts/searchform' %>
- </nav>
+              <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                  <% if user_signed_in? %>
+                    <li class="nav-item ">
+                      <%= link_to "マイページ", user_path(current_user), class: 'btn btn-outline-secondary mx-3 my-1'%>
+                    </li>
+                    <li class="nav-item ">
+                      <%= link_to "投稿一覧", posts_path, class: 'btn btn-outline-secondary mx-3 my-1'%>
+                    </li>
+                    <% if current_user.email != 'guest@email.com'%>
+                      <li class="nav-item">
+                        <%= link_to "投稿する", new_post_path, class: 'btn btn-outline-secondary mx-3 my-1'%>
+                      </li>
+                      <% end %>
+                        <li class="nav-item">
+                          <%= link_to "ログアウト", destroy_user_session_path, method: :delete,class: 'btn btn-outline-secondary mx-3 my-1'%>
+                        </li>
+                        <%= render partial: 'layouts/searchform' %>
+                          <% elsif admin_signed_in? %>
+                            <li class="nav-item">
+                              <%= link_to "投稿一覧", admin_posts_path, class: 'btn btn-outline-secondary mx-3 my-1' %>
+                            </li>
+                            <li class="nav-item">
+                              <%= link_to "会員一覧", admin_users_path,  class:'btn btn-outline-secondary mx-3 my-1'%>
+                            </li>
+                            <li class="nav-item">
+                              <%= link_to "ジャンル一覧", admin_genres_path, class: 'btn btn-outline-secondary mx-3 my-1'%>
+                            </li>
+                            <li class="nav-item">
+                              <%= link_to "ログアウト",destroy_admin_session_path, method: :delete,class: 'btn btn-outline-secondary mx-3 my-1'%>
+                            </li>
+                            <%= render partial: 'layouts/searchform' %>
+                              <% else %>
+                                <li class="nav-item">
+                                  <%= link_to "About", about_path,class: 'btn btn-outline-secondary mx-3 my-1' %>
+                                </li>
+                                <li class="nav-item">
+                                  <%= link_to "新規登録", new_user_registration_path,class: 'btn btn-outline-secondary mx-3 my-1'%>
+                                </li>
+                                <li class="nav-item">
+                                  <%= link_to "ログイン", new_user_session_path,class: 'btn btn-outline-secondary mx-3 my-1'%>
+                                </li>
+                                <li class="nav-item">
+                                  <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: 'btn btn-outline-secondary mx-3 my-1' %>
+                                </li>
+                                <% end %>
+                </ul>
+              </div>
+  </nav>
 </header>

@@ -1,38 +1,40 @@
   <div class="container my-5">
-    <div class="text-center mb-5">
-      <h4>"<%= @word_for_search %>"の検索結果</h4>
-    </div>
-    
-    
-    <% if @posts.present? %>
-        
-        <div class="container my-5">
- <div class="row">
-  <% @posts.each do |post| %>
-    <div class="col-md-3 mb-3">
-      <div class="card">
-        <%= link_to post_path(post) do %>
-          <%= image_tag post.get_image, class: 'card-img-top post-index-card-img' %>
-        <% end %>
-        <div class="card-body">
-          <h5 class="card-title"><%= post.title.truncate(10) %></h5>
-          <div class="card-text">
-            <%= post.artist %>
-            <div><i class="fas fa-user"></i><%= link_to post.user.name,user_path(post.user) %></div>
-          </div>
-        </div>
-        <div class="card-footer text-right">
-          <%= render 'public/likes/like', post: post %>
-        </div>
-      </div>
-    </div>
-        <% end %>
-        </div>
-    <% else %>
-      <div class="text-center mb-5">
-        <h4>見つかりませんでした</h4>
-      </div>
-    <% end %>
-    <%= paginate @posts %>
-    </div>
+  <div class="text-center mb-5">
+    <h4>"
+      <%= @word_for_search %>"の検索結果</h4>
   </div>
+  <% if @posts.present? %>
+    <div class="container my-5">
+      <div class="row">
+        <% @posts.each do |post| %>
+          <div class="col-md-3 mb-3">
+            <div class="card">
+              <%= link_to post_path(post) do %>
+                <%= image_tag post.get_image, class: 'card-img-top post-index-card-img' %>
+                  <% end %>
+                    <div class="card-body">
+                      <h5 class="card-title">
+                        <%= post.title.truncate(10) %>
+                      </h5>
+                      <div class="card-text">
+                        <%= post.artist %>
+                          <div><i class="fas fa-user"></i>
+                            <%= link_to post.user.name,user_path(post.user) %>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="card-footer text-right">
+                      <%= render 'public/likes/like', post: post %>
+                    </div>
+            </div>
+          </div>
+          <% end %>
+      </div>
+      <% else %>
+        <div class="text-center mb-5">
+          <h4>見つかりませんでした</h4>
+        </div>
+        <% end %>
+          <%= paginate @posts %>
+    </div>
+</div>
