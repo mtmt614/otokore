@@ -37,7 +37,7 @@
         (<%= comment.created_at.strftime('%Y/%m/%d') %>)
       </small>
           <small>
-            <%= link_to post_comment_path(post_id: comment.post_id, id: comment.id), method: :delete, class: 'text-black-50', data: { confirm: '削除しますか？' } do %>
+            <%= link_to admin_post_comment_path(post_id: comment.post_id, id: comment.id), method: :delete, class: 'text-black-50', data: { confirm: '削除しますか？' } do %>
              <i class="fas fa-trash-alt"></i>
             <% end %>
           </small>
@@ -45,7 +45,9 @@
 
       <hr class="hr">
     </div>
+    <%= paginate @comments %>
               <% end %>
+              
             </div>
           </div>
         
