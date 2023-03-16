@@ -28,18 +28,18 @@
 - 他ユーザーと好きな曲やアーティストについて交流したい時
 
 ## 設計書
-- ER図:<br>
+- ER図<br>
 https://app.diagrams.net/#G1NJsWOLkG5Lmm5UwjEthe0CHOvbEFJ-z2
-- テーブル定義書:<br>
+- テーブル定義書<br>
 https://docs.google.com/spreadsheets/d/1wGr2qfKsef3_u2uZGYfDQJTlA6iPUiUPS-nbuVCq_5c/edit?usp=sharing
 - 画面設計（ワイヤーフレーム）<br>
-1.管理者側:
+1.管理者側：
 https://app.diagrams.net/#G1X0hlDZaqwe6PgrL9UgwGhoks878eiCAV <br>
-2.会員側:
+2.会員側：
 https://app.diagrams.net/#G1FlQzeRg3vJOiGsmV8W2wPfpQYIgayOp4
-- アプリケーション詳細設計:<br>
+- アプリケーション詳細設計<br>
 https://docs.google.com/spreadsheets/d/1STqA6hL8kDdSOxD5RzOxPAVCU4W-SdL0NSL5fVSKQUM/edit?usp=sharing
-- WBS:<br>
+- WBS<br>
 https://docs.google.com/spreadsheets/d/17OR45iOjgLrxKp7qhXc4d3nByZtNq6PgMKgtE8hz92s/edit?usp=sharing
 
 
