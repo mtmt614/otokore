@@ -32,9 +32,9 @@
 https://app.diagrams.net/#G1NJsWOLkG5Lmm5UwjEthe0CHOvbEFJ-z2
 - テーブル定義書:
 https://docs.google.com/spreadsheets/d/1wGr2qfKsef3_u2uZGYfDQJTlA6iPUiUPS-nbuVCq_5c/edit?usp=sharing
-- 画面設計（ワイヤーフレーム）
+- 画面設計（ワイヤーフレーム）<br>
 1.管理者側:
-https://app.diagrams.net/#G1X0hlDZaqwe6PgrL9UgwGhoks878eiCAV
+https://app.diagrams.net/#G1X0hlDZaqwe6PgrL9UgwGhoks878eiCAV <br>
 2.会員側:
 https://app.diagrams.net/#G1FlQzeRg3vJOiGsmV8W2wPfpQYIgayOp4
 - アプリケーション詳細設計:
