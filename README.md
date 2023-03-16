@@ -11,8 +11,8 @@
 曲を聴くためのアプリは普及しているので、お気に入りの曲を記録して共有することで今まで知らなかった曲と出会い音楽を通して人とも繋がれる生き生きとしたサイトを作りたいと考え、このテーマに決めました。<br>
 このサイトを通して更に音楽を楽しんでもらえれば幸いです。<br>
 
-曲名・アーティスト名・ジャンル・ひと言の入力のみで手軽に良いと思った曲を共有したり、他のユーザーの投稿にはいいねやコメントを送ることで好きな曲を通して気軽に交流することができるサイトです。<br>
-「ひと言」の欄には指定が無く自由に記入できるため、好きなアーティストのPRをしたり日記のように活用することもできます。
+曲名・アーティスト名・ジャンル・ひとことの入力のみで手軽に良いと思った曲を共有したり、他のユーザーの投稿にはいいねやコメントを送ることで好きな曲を通して気軽に交流することができるサイトです。<br>
+「ひとこと」の欄には指定が無く自由に記入できるため、好きなアーティストのPRをしたり日記のように活用することもできます。
 
 ### ターゲットユーザ
 - 年齢：10~40代
@@ -28,6 +28,19 @@
 - 他ユーザーと好きな曲やアーティストについて交流したい時
 
 ## 設計書
+- ER図:
+https://app.diagrams.net/#G1NJsWOLkG5Lmm5UwjEthe0CHOvbEFJ-z2
+- テーブル定義書:
+https://docs.google.com/spreadsheets/d/1wGr2qfKsef3_u2uZGYfDQJTlA6iPUiUPS-nbuVCq_5c/edit?usp=sharing
+- 画面設計（ワイヤーフレーム）
+1.管理者側:
+https://app.diagrams.net/#G1X0hlDZaqwe6PgrL9UgwGhoks878eiCAV
+2.会員側:
+https://app.diagrams.net/#G1FlQzeRg3vJOiGsmV8W2wPfpQYIgayOp4
+- アプリケーション詳細設計:
+https://docs.google.com/spreadsheets/d/1STqA6hL8kDdSOxD5RzOxPAVCU4W-SdL0NSL5fVSKQUM/edit?usp=sharing
+- WBS:
+https://docs.google.com/spreadsheets/d/17OR45iOjgLrxKp7qhXc4d3nByZtNq6PgMKgtE8hz92s/edit?usp=sharing
 
 
 ## 実装機能リスト
@@ -39,3 +52,7 @@ https://docs.google.com/spreadsheets/d/18E4jtEMsYrQ6g32RNI_hS6r8zx3vqpRfH7Er-EU9
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
+
+## 使用素材
+ - ぱくたそ (https://www.pakutaso.com/)
+ - FontAwesome (https://fontawesome.com/)
